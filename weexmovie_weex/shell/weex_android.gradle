@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+dependencies {
+    //compile 'com.taobao.android:weex_sdk:0.9.0'
+    compile project(':weex_sdk')
+    compile 'com.alibaba:fastjson:1.1.46.android'
+    compile 'com.taobao.android:weex_inspector:0.10.0.3'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    provided 'com.google.code.findbugs:jsr305:2.0.1'
+    compile 'com.squareup.okhttp:okhttp:2.3.0'
+    compile 'com.squareup.okhttp:okhttp-ws:2.3.0'
+}
+
+//设置IP地址和端口号  1、先使用配置好的ip  2、如果没有配置则 获取本机ip地址，如果获取不到 则使用localhost
+
+//def adbReverse(String port) {
+//    try {
+//        //Using adb reverse Note that this option is available on devices running android 5.0+ (API 21).
+//        //You must have only one device connected.
+//        project.exec {
+//            workingDir android.getSdkDirectory().toString() + "/platform-tools"
+//            executable "adb"
+//            args "reverse", "tcp:" + port, "tcp:" + port
+//        }
+//    } catch (e) {
+//        println e
+//    }
+//}
+//
+////./gradlew adbReverse -Pport="8081" //adbReverse.execute()
+//task adbReverse << {
+//    adbReverse(port)
+//}
+//preBuild.dependsOn runRNPackager

@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+version = "0.9.0"
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    resourcePrefix "weex"
+
+    def jsfmVersion = "0.15.2"
+    try {
+        def line
+        new File("assets/main.js").withReader { line = it.readLine() }
+        def m = line =~ /[A-Z\s]+\:\s+([0-9\.]+)\s+Build\s+[0-9]+/;
+        jsfmVersion = m[0][1]
+        println jsfmVersion
+    } catch (java.lang.Exception e) {
+
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 22
+
+        buildConfigField "String", "buildJavascriptFrameworkVersion", "\"${jsfmVersion}\""
+        buildConfigField "String", "buildVersion", "\"${version}\""
+
+        ndk {
+            abiFilters "armeabi", "x86"
+        }
+    }
+
+
+    sourceSets {
+        main {
+            assets.srcDirs = ['assets']
+            jniLibs.srcDir(['libs'])
+            java {
+                srcDirs = ["src/main/java"];
+            }
+        }
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    compileOptions.encoding = "UTF-8"
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    provided 'com.android.support:recyclerview-v7:23.1.1'
+    provided 'com.android.support:support-v4:23.1.1'
+    provided 'com.android.support:appcompat-v7:23.1.1'
+    provided 'com.alibaba:fastjson:1.1.46.android'
+
+}
