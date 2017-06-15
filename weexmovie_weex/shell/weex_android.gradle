@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
-
+android {
+    defaultConfig {
+        buildConfigField("String", "WEEX_SERVER_URL", weexServerUrl())
+    }
+}
 dependencies {
     //compile 'com.taobao.android:weex_sdk:0.9.0'
     compile project(':weex_sdk')
@@ -12,7 +16,17 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp-ws:2.3.0'
 }
 
-//设置IP地址和端口号  1、先使用配置好的ip  2、如果没有配置则 获取本机ip地址，如果获取不到 则使用localhost
+//设置IP地址和端口号  1、先使用配置好的ip  2、如果没有配置则 获取本机ip地址
+def weexServerUrl() {
+    String defaultIp = "" //10.0.2.3
+    if (defaultIp == null || defaultIp.length() == 0) {
+        defaultIp = InetAddress.getLocalHost().getHostAddress()
+        if (defaultIp == null || defaultIp.length() == 0) {
+            defaultIp = "localhost"
+        }
+    }
+    return "\"http://" + defaultIp + ":8083/dist/index.weex.js\""
+}
 
 //def adbReverse(String port) {
 //    try {

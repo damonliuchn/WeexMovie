@@ -57,8 +57,8 @@ public class MainActivity extends Activity implements IWXRenderListener {
 
     @Override
     protected void onResume() {
-        super.onResume();//10.0.3.2
-        mWXSDKInstance.renderByUrl("weex", "http://localhost:8083/dist/index.weex.js", null, null, WXRenderStrategy.APPEND_ASYNC);
+        super.onResume();
+        mWXSDKInstance.renderByUrl("weex", BuildConfig.WEEX_SERVER_URL, null, null, WXRenderStrategy.APPEND_ASYNC);
         if (mWXSDKInstance != null) {
             mWXSDKInstance.onActivityResume();
         }
