@@ -1,0 +1,41 @@
+{
+  "name": "WeexExplorer",
+  "version": "1.0.0",
+  "description": "weex demo",
+  "main": "index.js",
+  "scripts": {
+    "build:web": "webpack --config build/webpack.web.config.js",
+    "build:native": "webpack --config build/webpack.native.config.js",
+    "build": "npm run build:web & npm run build:native",
+    "serve": "serve -p 8080",
+    "debug": "weex debug"
+  },
+  "engines": {
+    "node": ">=4.0"
+  },
+  "keywords": [
+    "weex",
+    "vue"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.1.10",
+    "vuex": "^2.1.1",
+
+    "vue-router": "^2.3.0",
+    "weex-vue-render": "^0.2.0",
+
+    "weex-vue-router": "^0.0.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "babel-preset-es2015": "^6.18.0",
+    "serve": "^1.4.0",
+    "webpack": "^1.14.0",
+    "css-loader": "^0.26.1",
+    "vue-loader": "^10.3.0",
+    "weex-loader": "^0.4.4"
+  }
+}

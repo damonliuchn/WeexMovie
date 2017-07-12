@@ -1,2 +1,0 @@
-include ':app', ':weex_sdk'
-//project(':weex_sdk').projectDir = new File("/Users/admin/Project/AS_TEST/weex/android/sdk")
