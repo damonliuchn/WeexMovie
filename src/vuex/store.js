@@ -5,7 +5,7 @@ import * as mutations from './mutations'
 Vue.use(Vuex)
 // if (WXEnvironment.platform !== 'Web') {
 //
-// }
+//  }
 console.log("sssssssssssssssssssssss")
 const store = new Vuex.Store({
     actions,
