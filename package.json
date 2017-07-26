@@ -4,11 +4,8 @@
   "description": "weex demo",
   "main": "index.js",
   "scripts": {
-    "build:web": "webpack --config build/webpack.web.config.js",
-    "build:native": "webpack --config build/webpack.native.config.js",
-    "build": "npm run build:web & npm run build:native",
-    "serve": "serve -p 8080",
-    "debug": "weex debug"
+    "build": "webpack --config build/webpack.web.config.js",
+    "serve": "serve -p 8080"
   },
   "engines": {
     "node": ">=4.0"
@@ -21,11 +18,10 @@
   "dependencies": {
     "element-ui": "^1.4.0",
     "vue": "^2.1.10",
+    "vue-event-calendar": "^1.4.5",
     "vue-fullcalendar": "^1.0.9",
     "vue-router": "^2.3.0",
-    "vuex": "^2.1.1",
-    "weex-vue-render": "^0.2.0",
-    "weex-vue-router": "^0.0.4"
+    "vuex": "^2.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.20.0",
@@ -35,7 +31,6 @@
     "serve": "^1.4.0",
     "webpack": "^1.14.0",
     "css-loader": "^0.26.1",
-    "vue-loader": "^10.3.0",
-    "weex-loader": "^0.4.4"
+    "vue-loader": "^10.3.0"
   }
 }
