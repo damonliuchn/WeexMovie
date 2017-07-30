@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <IEcharts :option="bar" :loading="loading" @ready="onReady" @click="onClick"></IEcharts>
         <!--<schart :canvasId="canvasId"-->
                 <!--:type="type"-->
                 <!--:width="width"-->
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+import IEcharts from 'vue-echarts-v3/src/full.vue';
 import Schart from 'vue-schart';
 import jquery from 'jquery';
 import {getUserListPage2} from '../api/api'
@@ -48,7 +50,23 @@ export default {
             webContent:'',
             datacollection:null,
             datasetsdata:[],
-            labels: []
+            labels: [],
+            loading: true,
+            bar: {
+                title: {
+                    text: 'ECharts Hello World'
+                },
+                tooltip: {},
+                xAxis: {
+                    data: ['Shirt', 'Sweater', 'Chiffon Shirt', 'Pants', 'High Heels', 'Socks']
+                },
+                yAxis: {},
+                series: [{
+                    name: 'Sales',
+                    type: 'line',
+                    data: [3.6662,3.6298,3.6209,3.6662,3.6716,3.6600]
+                }]
+            }
 		}
 	},
     created () {
@@ -96,7 +114,7 @@ export default {
             );
     },
     components:{
-		Schart,LineExample
+		Schart,LineExample,IEcharts
 	},
     methods:{
         addData(name,value) {
@@ -123,6 +141,12 @@ export default {
         },
         getRandomInt () {
             return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+        },
+        onReady(instance) {
+            console.log(instance);
+        },
+        onClick(event, instance, echarts) {
+            console.log(arguments);
         }
     },
 }
