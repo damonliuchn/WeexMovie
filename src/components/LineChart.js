@@ -4,7 +4,7 @@ export default Line.extend({
     mixins: [reactiveProp],
     mounted () {
         this.renderChart(
-            this.chartData.dd
+            this.chartData
             // {
             //     labels: ["1","2","3","4","5","6","7","8",],
             //     datasets: [
@@ -16,22 +16,21 @@ export default Line.extend({
             //     ]
             // }
             ,
-            this.chartData.config
-            // {
-            //     responsive: true,
-            //     //maintainAspectRatio: false,
-            //     scales: {
-            //         yAxes: [{
-            //             display: true,
-            //             ticks: {
-            //                 beginAtZero: false,
-            //                 min: 3.6,
-            //                 //stepValue: 0.001,
-            //                 max: 3.7
-            //             }
-            //         }]
-            //     }
-            // }
+            {
+                responsive: true,
+                //maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: false,
+                            min: 3.6,
+                            //stepValue: 0.001,
+                            max: 3.7
+                        }
+                    }]
+                }
+            }
         )
     }
 })

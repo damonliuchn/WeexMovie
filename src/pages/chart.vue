@@ -111,31 +111,14 @@ export default {
         },
         fillData () {
             this.datacollection = {
-                dd:{
-                    labels: this.dataw.labels.reverse(),
-                    datasets: [
-                        {
-                            label: 'Data One',
-                            backgroundColor: '#ffffff',
-                            data: this.dataw.datasets[0].data.reverse()
-                        }
-                    ]
-                },
-                config:{
-                         responsive: true,
-                         //maintainAspectRatio: false,
-                         scales: {
-                             yAxes: [{
-                                 display: true,
-                                 ticks: {
-                                     beginAtZero: false,
-                                     min: 3.6,
-                                     //stepValue: 0.001,
-                                     max: 3.7
-                                 }
-                             }]
-                         }
-                }
+                labels: this.dataw.labels.reverse(),
+                datasets: [
+                    {
+                        label: 'Data One',
+                        backgroundColor: '#ffffff',
+                        data: this.dataw.datasets[0].data.reverse()
+                    }
+                ]
             }
         },
         getRandomInt () {
