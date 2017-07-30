@@ -3,7 +3,7 @@
  */
 var path = require('path');
 var fs = require('fs');
-
+var webpack = require('webpack')
 module.exports = {
     entry: {
         'app': path.resolve('src', 'entry-web.js')
@@ -28,5 +28,16 @@ module.exports = {
                 loader: 'babel',
             }
         ]
-    }
+    },
+    plugins: [
+
+        // ...
+
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jquery: 'jquery',
+            'window.jQuery': 'jquery',
+            jQuery: 'jquery'
+        })
+    ]
 };

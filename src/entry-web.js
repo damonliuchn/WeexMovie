@@ -4,9 +4,11 @@
 
 
 import VueRouter from 'vue-router'
-import "weex-vue-render"//导入weex
+//import "weex-vue-render"//导入weex
 import routes from './router-web'
-
+import VueResource from 'vue-resource';
+// Don't forget to call this
+Vue.use(VueResource);
 Vue.use(VueRouter);
 
 const router = new VueRouter({
