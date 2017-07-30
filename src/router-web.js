@@ -7,6 +7,6 @@ import a from './pages/app.vue'
 import chart from './pages/chart.vue'
 import Echart from './pages/Echart.vue'
 export default [
-    { path: '/', component: Echart },
+    { path: '/', component: chart },
     { path: '/messages', component: messages }
 ];

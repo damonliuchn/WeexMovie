@@ -1,85 +1,46 @@
 <template>
-    <div id="app">
+    <div class="echarts">
         <IEcharts :option="bar" :loading="loading" @ready="onReady" @click="onClick"></IEcharts>
-        <!--<schart :canvasId="canvasId"-->
-                <!--:type="type"-->
-                <!--:width="width"-->
-                <!--:height="height"-->
-                <!--:data="dataq"-->
-                <!--:options="options"-->
-        <!--&gt;</schart>-->
-        <line-example :chart-data="datacollection"></line-example>
     </div>
 </template>
 
 <script>
 import IEcharts from 'vue-echarts-v3/src/full.vue';
-import Schart from 'vue-schart';
 import jquery from 'jquery';
-import {getUserListPage2} from '../api/api'
-import axios from 'axios';
-import Vue from 'vue'
-import LineExample from '../components/LineChart.js'
 export default {
 	data() {
 		return {
-			canvasId: 'myCanvas',
-			type: 'line',
-			width: 500,
-			height: 400,
-			dataq: [
-//				{name: '2014', value: 1342},
-//				{name: '2015', value: 2123},
-//				{name: '2016', value: 1654},
-//				{name: '2017', value: 1795},
-			],
-            dataw: {
-                     labels: [],
-                     datasets: [
-                         {
-                             label: 'Data One',
-                             backgroundColor: '#05CBE1',
-                             data: []
-                         }
-                         ]
-              },
-			options: {
-				title: 'Total sales of stores in recent years',
-                yEqual: 1
-			},
-            webContent:'',
-            datacollection:null,
-            datasetsdata:[],
-            labels: [],
-            loading: true,
+		    yData:[],
+            xData:[],
+            loading: false,
             bar: {
                 title: {
-                    text: 'ECharts Hello World'
+                    text: '基金估值曲线'
                 },
                 tooltip: {},
                 xAxis: {
-                    data: ['Shirt', 'Sweater', 'Chiffon Shirt', 'Pants', 'High Heels', 'Socks']
+                    data: []
                 },
-                yAxis: {},
+                yAxis: {
+                    min: 3.5,
+                    max: 3.8
+                },
                 series: [{
                     name: 'Sales',
                     type: 'line',
-                    data: [3.6662,3.6298,3.6209,3.6662,3.6716,3.6600]
+                    data: []
                 }]
             }
 		}
 	},
     created () {
-	    //this.dataq.push({name: '2018', value: 1795});
 
     },
     mounted () {
-        //this.fillData();
         var url = "http://fund.eastmoney.com/110011.html?spm=search"
         this.$http.get('http://localhost:10004/forward_get?url='+url)
             .then(response => {
                     this.webContent = response.body;
-                    //find(this.webContent,"/<table>.*?<\/table>/g")
                     var thisVue = this;
                     jquery(this.webContent)
                     .find('table')
@@ -88,67 +49,45 @@ export default {
                                 console.log(index + ":" + domEle);
                                 for(var i = 1;i<domEle.rows.length;i++)
                                 {
-                                    var value =1;
-                                    var values = domEle.rows[i].cells[3].innerHTML
-                                        .replace('<span class="ui-color-green">','')
-                                        .replace('<span class="ui-color-red">','')
-                                        .replace('%</span>  ','');
                                     console.log("ddddddddd2:" + domEle.rows[i].cells[2].innerHTML);
                                     console.log("ddddddddd3:" + domEle.rows[i].cells[0].innerHTML);
-//                                    jquery(domEle.rows[i].cells[3].innerHTML)
-//                                        .find('span')
-//                                        .each(function(index, domEle){
-//                                            value = 1;
-//                                            console.log("ddddddddd1:" + domEle.innerHTML);
-//                                        });
                                     thisVue.addData(domEle.rows[i].cells[0].innerHTML,domEle.rows[i].cells[2].innerHTML)
                                 }
                                 thisVue.fillData();
                             }
                         }
                     );
-//                    console.log("over");
                 }, response => {
                     console.log("ddddddddd3:")
                 }
             );
     },
     components:{
-		Schart,LineExample,IEcharts
+		IEcharts
 	},
     methods:{
         addData(name,value) {
-            this.dataq.push({name: name, value: value});
-            this.dataw.datasets[0].data.push(value);
-            this.dataw.labels.push(name);
-//            var labels = [];
-//            labels.push(name);
-//            var dataset = [];
-//            dataset.push(value);
-            //fillData(dataset,labels);
+            this.xData.push(value)
+            this.yData.push(name)
         },
         fillData () {
-            this.datacollection = {
-                labels: this.dataw.labels.reverse(),
-                datasets: [
-                    {
-                        label: 'Data One',
-                        backgroundColor: '#ffffff',
-                        data: this.dataw.datasets[0].data.reverse()
-                    }
-                ]
-            }
-        },
-        getRandomInt () {
-            return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+            this.bar.series[0].data = this.xData.reverse()
+            this.bar.xAxis.data = this.yData.reverse()
         },
         onReady(instance) {
             console.log(instance);
         },
         onClick(event, instance, echarts) {
-            console.log(arguments);
+            console.log("ddd");
         }
     },
 }
 
 </script>
+
+<style scoped>
+    .echarts {
+        width: 800px;
+        height: 400px;
+    }
+</style>
