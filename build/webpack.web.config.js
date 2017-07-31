@@ -12,7 +12,7 @@ module.exports = {
         path: 'dist',
         filename: '[name].js',
         //publicPath: 'http://xiazhou.me/example/xiazhou-weex/dist/',
-        publicPath: '/dist/',
+        publicPath: '/public/dist/',
     },
     node: {
         global: true
