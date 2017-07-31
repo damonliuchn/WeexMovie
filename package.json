@@ -4,7 +4,7 @@
   "description": "weex demo",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config build/webpack.web.config.js",
+    "build": "webpack --config config/webpack.web.config.js",
     "serve": "serve -p 8080"
   },
   "engines": {
