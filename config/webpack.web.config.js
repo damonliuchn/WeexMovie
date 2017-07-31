@@ -9,10 +9,9 @@ module.exports = {
         'app': path.resolve('src', 'entry-web.js')
     },
     output: {
-        path: 'dist',
+        path: 'public/dist',
         filename: '[name].js',
-        //publicPath: 'http://xiazhou.me/example/xiazhou-weex/dist/',
-        publicPath: '/public/dist/',
+        publicPath: '/dist/',
     },
     node: {
         global: true
@@ -29,6 +28,7 @@ module.exports = {
             }
         ]
     },
+    devtool:"source-map",
     plugins: [
 
         // ...
