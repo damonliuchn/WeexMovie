@@ -45,6 +45,6 @@ app.use(express.static('public'));
 app.use('/node_modules', express.static('node_modules'));
 
 app.use('/', router);
-var port = process.env.PORT || 10004;
+var port = process.env.PORT || 3242;
 app.listen(port);
 console.log('Magic happens on port ' + port);
