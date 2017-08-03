@@ -36,9 +36,13 @@ export default {
     created () {
 
     },
-    mounted () {
-        var url = "http://fund.eastmoney.com/110011.html?spm=search"
-        this.$http.get('http://localhost:10004/forward_get?url='+url)
+    mounted () {//110011
+        var id = this.$route.params.id;
+        if (!id) {
+            id = "110011"
+        }
+        var url = "http://fund.eastmoney.com/"+id+".html?spm=search"
+        this.$http.get('http://'+window.document.location.host+'/forward_get?url='+url)
             .then(response => {
                     this.webContent = response.body;
                     var thisVue = this;

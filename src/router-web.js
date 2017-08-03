@@ -6,6 +6,7 @@ import messages from './pages/messages.vue'
 import a from './pages/calendar.vue'
 import chart from './pages/chart.vue'
 export default [
+    { path: '/:id', component: chart },
     { path: '/', component: chart },
     { path: '/messages', component: messages }
 ];
