@@ -17,3 +17,10 @@ const router = new VueRouter({
 });
 
 new Vue({el:'#root',router});
+/**
+  上边做了两件事情
+  1、当前html dom 中 的#root 实例化成一个Vue对象
+  2、将vuerouter传入 寻找 router-view 替换
+ */
+
+
