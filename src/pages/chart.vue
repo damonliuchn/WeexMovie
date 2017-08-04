@@ -104,7 +104,12 @@
                     title: {
                         text: '基金估值曲线'
                     },
-                    tooltip: {},
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['半月', '月','季', '半年','年']
+                    },
                     xAxis: {
                         data: []
                     },
@@ -113,7 +118,7 @@
                         max: 3.8
                     },
                     series: [{
-                        name: '估值',
+                        name: '累计净值',
                         type: 'line',
                         data: [],
                         markPoint: {
