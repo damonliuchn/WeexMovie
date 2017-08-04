@@ -81,8 +81,8 @@
                 type: 'line',
                 data: [1, -2, 2, 5, 3, 2, 0],
                 markPoint: {
-                    data: [
-                        {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                    data : [
+                        {name: '标注1', value: 100, xAxis: 1, yAxis: 20}
                     ]
                 },
                 markLine: {
@@ -113,9 +113,19 @@
                         max: 3.8
                     },
                     series: [{
-                        name: 'Sales',
+                        name: '估值',
                         type: 'line',
-                        data: []
+                        data: [],
+                        markPoint: {
+                            data : [
+                                {name: '最新值', value: 0, xAxis: "", yAxis: 0}
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {type: 'average', name: '平均值'}
+                            ]
+                        }
                     }]
                 }
             }
@@ -205,6 +215,11 @@
                 this.updateYAxis();
                 this.bar.series[0].data = this.yyData.reverse()
                 this.bar.xAxis.data = this.xxData.reverse()
+
+                var value = parseFloat(this.yyData[this.yyData.length-1])
+                this.bar.series[0].markPoint.data[0].value = value
+                this.bar.series[0].markPoint.data[0].yAxis = value
+                this.bar.series[0].markPoint.data[0].xAxis = this.xxData[this.xxData.length-1]
                 this.loading = false
             },
             onReady(instance) {
