@@ -1,3 +1,7 @@
+代码在这个tag上 https://github.com/MasonLiuChn/WeexExplorer/releases/tag/vuex
+
+
+
 # 本工程尝试实现
 1. Web端做SPA，Native端做多页应用
 2. 使用Vuex
