@@ -11,6 +11,7 @@
 <script>
     import mixins from '../mixins'
     //Vue.mixin(mixins)
+    import { mapGetters, mapActions } from 'vuex'
     export default  {
         mixins:[mixins],
         data(){
@@ -19,17 +20,23 @@
             }
         },
         created () {
-            this.route=this.$route;
+            //this.route=this.$route;
         },
         computed: {
             test () {
                 return this.$store.state.users
-            }
+            },
+            ...mapGetters([
+                'getListData'//this.$store.state.users
+            ])
         },
         methods:{
             test2() {
-                this.$store.dispatch('FETCH_LIST_DATA', {type:1})
-            }
+                this.fetchList({type:1})//this.$store.dispatch('FETCH_LIST_DATA', {type:1})
+            },
+            ...mapActions([
+                'fetchList'
+            ])
         }
     };
 </script>

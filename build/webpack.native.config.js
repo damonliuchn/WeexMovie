@@ -29,7 +29,7 @@ function walk(root,dir) {
             }
         })
 }
-walk('../app','/pages');
+walk('../src','/pages');
 module.exports = {
     entry:entry,
     output: {

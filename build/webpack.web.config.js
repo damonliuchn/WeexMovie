@@ -6,7 +6,7 @@ var fs = require('fs');
 
 module.exports = {
     entry: {
-        'app': path.resolve('app', 'entry-web.js')
+        'entry-web': path.resolve('src', 'entry-web.js')
     },
     output: {
         path: 'dist',

@@ -1,10 +1,11 @@
 /**
- * Created by ebi on 2017/1/23.
+ * 给native 添加 vuex  和  router
  */
 
 import weexVueRouter from 'weex-vue-router'
-import routes from '../router-native'//web端的路由在web-router里定义，在app.js里引用
-import store from '../vuex/store'
+//web端的路由在web-router里定义，在app.js里引用
+import routes from '../router-native.js'
+import store from '../vuex/vuex.js'
 Vue.use(weexVueRouter,{routes,weex});
 
 
