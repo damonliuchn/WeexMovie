@@ -1,18 +1,33 @@
 <template>
         <!--<text class="button" @click="test2()"> 跳转至messages页面{{test}}dd</text>-->
-    <div class="stories-view">
+    <!-- Flow  Float  Flayer  Flexbox  四种布局方式 -->
+    <div>
         <app-header></app-header>
-        <!--<list class="story-list" @loadmore="loadMoreStories" loadmoreoffset="50">-->
-            <!--<cell class="story-cell" v-for="movie in getListData.movies.abridged_cast" :key="movie.id" append="tree">-->
-                <!--&lt;!&ndash;<story :story="story"></story>&ndash;&gt;-->
-            <!--</cell>-->
-        <!--</list>-->
+        <div>
+            <div class="v-frayer">
+                <text class="loading-text">loading ...</text>
+            </div>
 
-        <text class="button" @click="test2()"> 跳转至messages页面{{test}}dd</text>
-
-        <div class="loading">
-            <text class="loading-text">loading ...</text>
+            <list class="story-list" @loadmore="loadMoreStories" loadmoreoffset="50">
+                <cell class="story-cell" v-for="movie in getListData.movies" :key="movie.id" append="tree">
+                    <!--<story :story="story"></story>-->
+                    <text class="title">{{movie.title}}</text>
+                </cell>
+            </list>
         </div>
+
+
+        <div class="g-flex-row">
+            <text class="button" @click="test2()"> aaa</text>
+            <text class="button" @click="test2()"> aaa</text>
+        </div>
+        <div>
+            <text class="button" @click="test2()"> bbb</text>
+            <text class="button" @click="test2()"> bbb</text>
+        </div>
+        <!--<text class="button" @click="test2()"> 跳转至messages页面dd</text>-->
+
+
     </div>
 </template>
 
@@ -26,19 +41,18 @@
         mixins:[mixins],
         data(){
             return {
-                loading:true,
-                ss:"ssssss"
+                loading:true
             }
         },
         created () {
-            this.test2()
             let self = this
+            this.fetchList({type:1})
             this.$store.watch(
                 function (state) {
                     return self.$store.getters.getListData;
                 },
                 function (newData) {
-                    console.log("abc"+ newData.total)
+                    self.loading = false
                 },
                 {
                     deep: true //add this if u need to watch object properties change etc.
@@ -59,6 +73,7 @@
             // 通过这种语法来watch就行，文档里有。。。看需求，还可以直接watch data，使用deep:true来深度观察
             "loading" :{
                 handler(val,oldVal) {
+
                 },
                 // 深度观察
                 deep:true
@@ -68,9 +83,6 @@
             loadMoreStories() {
 
             },
-            test2() {
-                this.fetchList({type:1})//this.$store.dispatch('FETCH_LIST_DATA', {type:1})
-            },
             ...mapActions([
                 'fetchList'
             ])
@@ -79,9 +91,12 @@
 </script>
 
 <style scoped>
-    .stories-view {
+    .g-flex-row {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+    }
+    .v-frayer {
+        position: absolute;
     }
     .story-cell {
         margin-bottom: 3px;
