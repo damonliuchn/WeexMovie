@@ -8,7 +8,7 @@
             <!--</cell>-->
         <!--</list>-->
 
-        <text class="button" @click="test2()"> 跳转至messages页面{{ss}}dd</text>
+        <text class="button" @click="test2()"> 跳转至messages页面{{test}}dd</text>
 
         <div class="loading">
             <text class="loading-text">loading ...</text>
@@ -19,7 +19,6 @@
 <script>
     import mixins from '../mixins'
     //Vue.mixin(mixins)
-    import vuex from "../vuex/vuex"
     import { mapGetters, mapActions } from 'vuex'
     import AppHeader from '../components/app-header.vue'
     export default  {
@@ -32,16 +31,14 @@
             }
         },
         created () {
-            this.route2 = this.$store.state.users;
-            this.route3 = this.$store.state;
             this.test2()
-
+            let self = this
             this.$store.watch(
                 function (state) {
-                    return state.users;
+                    return self.$store.getters.getListData;
                 },
                 function (newData) {
-                    console.log("sseeeeeeeeeeeeeeeeeeeeee555e"+ newData.total)
+                    console.log("abc"+ newData.total)
                 },
                 {
                     deep: true //add this if u need to watch object properties change etc.
@@ -52,20 +49,16 @@
             test () {
                 return this.$store.state.users
             },
-            test3 () {
-                return vuex.state.users
-            },
-            ...mapGetters([
+            ...mapGetters(
+                [
                 'getListData'//this.$store.state.users
-            ])
+            ]
+    )
         },
         watch:{
             // 通过这种语法来watch就行，文档里有。。。看需求，还可以直接watch data，使用deep:true来深度观察
-            "test3" :{
+            "loading" :{
                 handler(val,oldVal) {
-                    console.log("sseeeeeeeeeeeeeeeeeeee"+val.total)
-//                    this.loading = false
-                    this.ss = "eeeeerr333333"
                 },
                 // 深度观察
                 deep:true
