@@ -1,6 +1,6 @@
-import * as mutations from './mutations-types'
+import * as mutationsName from './mutations-name'
 const mutationsFun = {
-    [mutations.FUN_SET_LIST](state, {type, items}) {
+    [mutationsName.SET_LIST](state, {type, items}) {
         state.users = items
         console.log("ssssss"+items.total)
     }

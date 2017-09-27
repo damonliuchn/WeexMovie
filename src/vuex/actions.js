@@ -1,5 +1,5 @@
 import { fetch } from './fetch'
-import * as mutations from './mutations-types'
+import * as mutationsName from './mutations-name'
 export function fetchList ({ commit, dispatch, state }, { type }) {
-    return fetch().then(items => commit(mutations.FUN_SET_LIST, { type, items }))
+    return fetch().then(items => commit(mutationsName.SET_LIST, { type, items }))
 }

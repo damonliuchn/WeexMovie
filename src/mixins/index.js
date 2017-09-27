@@ -30,6 +30,7 @@ export default {
             self.apiDomain='http://192.168.31.241:8080';//替换成你电脑的IP，并保证手机能访问到电脑(连同一个wifi就好啦)
         }
         this.$store = store;//需要手动放进来
+        this.vuex2 = store;
     },
     methods: {
         request(opt) {
