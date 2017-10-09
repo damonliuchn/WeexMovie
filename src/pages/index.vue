@@ -1,33 +1,21 @@
 <template>
-        <!--<text class="button" @click="test2()"> 跳转至messages页面{{test}}dd</text>-->
+    <!--<text class="button" @click="test2()"> 跳转至messages页面{{test}}dd</text>-->
     <!-- Flow  Float  Flayer  Flexbox  四种布局方式 -->
-    <div>
+    <div class="g-flex-column">
         <app-header></app-header>
-        <div>
-            <div class="v-frayer">
+
+        <div style="height: 100%">
+            <div v-if="loading" class="v-frayer">
                 <text class="loading-text">loading ...</text>
             </div>
 
-            <list class="story-list" @loadmore="loadMoreStories" loadmoreoffset="50">
-                <cell class="story-cell" v-for="movie in getListData.movies" :key="movie.id" append="tree">
-                    <!--<story :story="story"></story>-->
-                    <text class="title">{{movie.title}}</text>
+            <list @loadmore="loadMoreStories" loadmoreoffset="50">
+                <cell v-for="movie in getListData.movies" :key="movie.id" append="tree">
+                    <movie :data="movie"></movie>
                 </cell>
             </list>
         </div>
-
-
-        <div class="g-flex-row">
-            <text class="button" @click="test2()"> aaa</text>
-            <text class="button" @click="test2()"> aaa</text>
-        </div>
-        <div>
-            <text class="button" @click="test2()"> bbb</text>
-            <text class="button" @click="test2()"> bbb</text>
-        </div>
         <!--<text class="button" @click="test2()"> 跳转至messages页面dd</text>-->
-
-
     </div>
 </template>
 
@@ -36,8 +24,9 @@
     //Vue.mixin(mixins)
     import { mapGetters, mapActions } from 'vuex'
     import AppHeader from '../components/app-header.vue'
+    import Movie from '../components/movie.vue'
     export default  {
-        components: { AppHeader},
+        components: { AppHeader,Movie},
         mixins:[mixins],
         data(){
             return {
@@ -95,9 +84,19 @@
         display: flex;
         flex-direction: row;
     }
+    .g-flex-column {
+        display: flex;
+        flex-direction: column;
+    }
+
     .v-frayer {
         position: absolute;
     }
+
+    .v-stretch {
+        align-self: stretch;
+    }
+
     .story-cell {
         margin-bottom: 3px;
         border-bottom-width: 2px;

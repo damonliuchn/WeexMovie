@@ -2,6 +2,17 @@
 1. Web端做SPA，Native端做多页应用
 2. 使用Vuex
 
+
+Weex 小项目？？？？？？？？
+{
+1、tabbar
+2、list
+3、navigator
+}
+
+
+
+
 ## 一、build native
 - 每个vue文件都为生成一个独立的bundle
 - 入口是 index.vue
