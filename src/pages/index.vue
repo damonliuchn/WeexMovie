@@ -3,18 +3,27 @@
     <!-- Flow  Float  Flayer  Flexbox  四种布局方式 -->
     <div class="g-flex-column">
         <app-header></app-header>
+        <div class="g-flex-full c-red">
 
-        <div style="height: 100%">
-            <div v-if="loading" class="v-frayer">
-                <text class="loading-text">loading ...</text>
+            <div class="g-flayer g-flex-center">
+                <text class="button" @click="test2()"> sewsfsdfsdfs</text>
             </div>
 
-            <list @loadmore="loadMoreStories" loadmoreoffset="50">
-                <cell v-for="movie in getListData.movies" :key="movie.id" append="tree">
-                    <movie :data="movie"></movie>
-                </cell>
-            </list>
+            <div class="g-flex-center">
+                <text class="button" @click="test2()"> 跳转至messages页面ddss</text>
+            </div>
+            <!--<text class="button" @click="test2()"> 跳转至messages页面ddss</text>-->
         </div>
+        <!--<div v-if="loading">-->
+            <!--<text class="loading-text">loading ...</text>-->
+        <!--</div>-->
+
+        <!--<list @loadmore="loadMoreStories" loadmoreoffset="50">-->
+            <!--<cell v-for="movie in getListData.movies" :key="movie.id" append="tree">-->
+                <!--<movie :data="movie"></movie>-->
+            <!--</cell>-->
+        <!--</list>-->
+
         <!--<text class="button" @click="test2()"> 跳转至messages页面dd</text>-->
     </div>
 </template>
@@ -88,33 +97,25 @@
         display: flex;
         flex-direction: column;
     }
-
-    .v-frayer {
+    .g-flayer {
         position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
     }
 
-    .v-stretch {
-        align-self: stretch;
+    .g-flex-center {
+        flex:1;
+        justify-content: center;/*针对子view 是行内元素才起作用*/
+        align-items:center;/*针对子view 是行内元素才起作用*/
     }
 
-    .story-cell {
-        margin-bottom: 3px;
-        border-bottom-width: 2px;
-        border-bottom-style: solid;
-        border-bottom-color: #DDDDDD;
-        background-color: #FFFFFF;
+    .g-flex-full {
+        flex:1;
     }
-    .loading {
-        width: 750px;
-        height: 120px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .loading-text {
-        margin: auto;
-        text-align: center;
-        font-size: 40px;
-        color: #BBB;
+
+    .c-red {
+        background-color: #FF66ff;
     }
 </style>
