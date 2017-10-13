@@ -3,28 +3,16 @@
     <!-- Flow  Float  Flayer  Flexbox  四种布局方式 -->
     <div class="g-flex-column">
         <app-header></app-header>
-        <div class="g-flex-full c-red">
-
-            <div class="g-flayer g-flex-center">
-                <text class="button" @click="test2()"> sewsfsdfsdfs</text>
+        <div class="g-flex-full">
+            <div class="g-flayer g-flex-center" v-if="loading">
+                <text> loading ...</text>
             </div>
-
-            <div class="g-flex-center">
-                <text class="button" @click="test2()"> 跳转至messages页面ddss</text>
-            </div>
-            <!--<text class="button" @click="test2()"> 跳转至messages页面ddss</text>-->
+            <list class="g-flex-full" @loadmore="loadMoreStories" loadmoreoffset="50">
+                <cell v-for="movie in getListData.movies" :key="movie.id" append="tree">
+                    <movie :data="movie"></movie>
+                </cell>
+            </list>
         </div>
-        <!--<div v-if="loading">-->
-            <!--<text class="loading-text">loading ...</text>-->
-        <!--</div>-->
-
-        <!--<list @loadmore="loadMoreStories" loadmoreoffset="50">-->
-            <!--<cell v-for="movie in getListData.movies" :key="movie.id" append="tree">-->
-                <!--<movie :data="movie"></movie>-->
-            <!--</cell>-->
-        <!--</list>-->
-
-        <!--<text class="button" @click="test2()"> 跳转至messages页面dd</text>-->
     </div>
 </template>
 

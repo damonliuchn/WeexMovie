@@ -1,6 +1,6 @@
 const stream = weex.requireModule('stream')
 
-const baseURL = 'https://raw.githubusercontent.com/MasonLiuChn/MockData/master/MoviesExample.json'
+const baseURL = 'https://gitee.com/masonliu/MockData/raw/master/MoviesExample.json'
 //const baseURL = 'https://www.baidu.com'
 export function fetch() {
     return new Promise((resolve, reject) => {

@@ -3,15 +3,10 @@
 2. 使用Vuex
 
 
-Weex 小项目？？？？？？？？
-{
-1、tabbar
-2、list
-3、navigator
-}
-
-
-
+## Todo
+1、https://github.com/alibaba/weex-ui   wxc-tab-page
+2、navigator
+3、Android App
 
 ## 一、build native
 - 每个vue文件都为生成一个独立的bundle
