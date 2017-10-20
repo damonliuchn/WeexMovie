@@ -38,6 +38,7 @@
     "serve": "^1.4.0",
     "vue-loader": "^10.3.0",
     "webpack": "^1.14.0",
-    "weex-loader": "^0.4.4"
+    "weex-loader": "^0.4.4",
+    "copy-webpack-plugin": "^4.0.1"
   }
 }
