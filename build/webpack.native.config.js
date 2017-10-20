@@ -4,15 +4,23 @@
 var webpack = require('webpack')
 var path = require('path');
 var fs = require('fs');
+var copy = require('copy-webpack-plugin');
+var entry = {};
+var outPath="dist";
 
 var bannerPlugin = new webpack.BannerPlugin(
     '// { "framework": "Vue" }\n',
     { raw: true }
 )
 
-var entry = {};
-var outPath="dist";
 
+//  文件拷贝插件,将图片和字体拷贝到dist目录
+var copyPlugin = new copy([
+    //{from: './src/image', to: "./image"},
+    {from: '../node_modules/bui-weex/src/font', to: outPath + "/font"}
+])
+
+//搜集入口文件
 function walk(root,dir) {
     var directory = path.join(__dirname, root, dir);
     fs.readdirSync(directory)
@@ -29,7 +37,7 @@ function walk(root,dir) {
             }
         })
 }
-walk('../src','/pages');
+walk('../src','pages');
 module.exports = {
     entry:entry,
     output: {
@@ -49,7 +57,11 @@ module.exports = {
                 test:/\.js(\?[^?]+)?$/,
                 loader: 'babel',
             }
+            ,{
+                test: /\.scss$/,
+                loader: 'style!css!sass'
+            }
         ]
     },
-    plugins: [bannerPlugin]
+    plugins: [bannerPlugin,copyPlugin]
 };

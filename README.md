@@ -4,9 +4,17 @@
 
 
 ## Todo
-1、https://github.com/alibaba/weex-ui   wxc-tab-page
-2、navigator
-3、Android App
+1、http://jspang.com/2017/07/12/weex/#11
+
+2、http://i.youku.com/i/UNDEzMDY2NjI0MA==/videos
+
+3、https://github.com/alibaba/weex-ui   wxc-tab-page
+
+3、https://github.com/bingo-oss/bui-weex  tabbar
+
+4、navigator
+
+5、Android App
 
 ## 一、build native
 - 每个vue文件都为生成一个独立的bundle

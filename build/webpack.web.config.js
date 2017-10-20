@@ -3,6 +3,12 @@
  */
 var path = require('path');
 var fs = require('fs');
+var copy = require('copy-webpack-plugin');
+
+//  文件拷贝插件,将图片和字体拷贝到dist目录
+var copyPlugin = new copy([
+    {from: './src/index.html', to: './dist'}
+])
 
 module.exports = {
     entry: {
@@ -28,5 +34,6 @@ module.exports = {
                 loader: 'babel',
             }
         ]
-    }
+    },
+    plugins: [copyPlugin]
 };
