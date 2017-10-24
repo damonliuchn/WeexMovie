@@ -7,7 +7,7 @@
     "build:web": "webpack --config build/webpack.web.config.js",
     "build:native": "webpack --config build/webpack.native.config.js",
     "build": "npm run build:web & npm run build:native",
-    "serve": "serve -p 8080",
+    "serve": "node tool/server.js",
     "debug": "weex debug"
   },
   "engines": {
@@ -35,7 +35,6 @@
     "css-loader": "^0.26.1",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
-    "serve": "^1.4.0",
     "vue-loader": "^10.3.0",
     "webpack": "^1.14.0",
     "weex-loader": "^0.4.4",
