@@ -8,6 +8,8 @@
     "build:native": "webpack --config build/webpack.native.config.js",
     "build": "npm run build:web & npm run build:native",
     "serve": "node tool/server.js",
+    "dev:web": "npm run build:web & webpack-dev-server --config build/webpack.web.config.js --inline --host localhost --port 8082",
+    "dev:native": "",
     "debug": "weex debug"
   },
   "engines": {
@@ -37,6 +39,7 @@
     "sass-loader": "^6.0.6",
     "vue-loader": "^10.3.0",
     "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2",
     "weex-loader": "^0.4.4",
     "copy-webpack-plugin": "^4.0.1",
     "express": "~4.0.0"
