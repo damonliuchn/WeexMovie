@@ -4,9 +4,7 @@
 
 
 ## Todo
-1、http://jspang.com/2017/07/12/weex/#11
-
-2、http://i.youku.com/i/UNDEzMDY2NjI0MA==/videos
+1、https://www.chungold.com/my/course/3
 
 3、https://github.com/alibaba/weex-ui   wxc-tab-page
 
