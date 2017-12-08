@@ -2,7 +2,6 @@
     <!--<text class="button" @click="test2()"> 跳转至messages页面{{test}}dd</text>-->
     <!-- Flow  Float  Flayer  Flexbox  四种布局方式 -->
     <div class="g-flex-column">
-        <app-header></app-header>
         <div class="g-flex-full">
             <div class="g-flayer g-flex-center" v-if="loading">
                 <text> loading ...</text>
@@ -20,10 +19,20 @@
     import mixins from '../mixins'
     //Vue.mixin(mixins)
     import { mapGetters, mapActions } from 'vuex'
-    import AppHeader from '../components/app-header.vue'
     import Movie from '../components/movie.vue'
+    var buiweex = require("bui-weex");
+    import { buiImageSlider } from 'bui-weex';
     export default  {
-        components: { AppHeader,Movie},
+        components: {
+            Movie,buiImageSlider,
+         "bui-tabbar": buiweex.buiTabbar,
+        "bui-tabbar-item": buiweex.buiTabbarItem,
+        'bui-header': buiweex.buiHeader,
+        'bui-icon': buiweex.buiIcon,
+        'bui-button': buiweex.buiButton,
+        'bui-image': buiweex.buiImage
+            
+        },
         mixins:[mixins],
         data(){
             return {

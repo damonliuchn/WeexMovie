@@ -7,6 +7,14 @@
                 @leftClick="back">
         </bui-header>
 
+        <!--选项卡-->
+        <bui-tabbar
+                :tabItems="tabItems"
+                :currentTab="currentTab"
+                @load="onTabLoad"
+                @itemClick="onTabItemClick">
+        </bui-tabbar>
+
 
         <slider class="slider" :index="index" auto-play="false" @change="change($event)">
             <!--选项卡内容-->
@@ -32,13 +40,7 @@
             </bui-tabbar-item>
         </slider>
 
-        <!--选项卡-->
-        <bui-tabbar
-                :tabItems="tabItems"
-                :currentTab="currentTab"
-                @load="onTabLoad"
-                @itemClick="onTabItemClick">
-        </bui-tabbar>
+
 
 
     </div>
