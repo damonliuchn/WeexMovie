@@ -10,6 +10,21 @@ var entry = {};
 var srcPath  = path.join(__dirname, '../src');
 var outDir = 'dist';
 
+//开发环境时，将开发机的IP替换到代码文件里
+const ip = require('ip');
+const IP = ip.address();
+console.log('----------use playground run: http://'+IP+':10004/dist/pages/index.js');//http://blog.csdn.net/fungleo/article/details/54574049
+fs.readFile(srcPath + "/router-native.js", 'utf8', function (err,data) {
+    if (err) {
+        return console.log(err);
+    }
+    var result = data.replace(/const basePath = .*?;/g, "const basePath = 'http://"+IP+":10004/dist';");
+    fs.writeFile(srcPath+"/router-native.js", result, 'utf8', function (err) {
+        if (err) return console.log(err);
+    });
+});
+
+
 var bannerPlugin = new webpack.BannerPlugin(
     '// { "framework": "Vue" }\n',
     { raw: true }
@@ -64,5 +79,6 @@ module.exports = {
             }
         ]
     },
-    plugins: [bannerPlugin,copyPlugin]
+    plugins: [bannerPlugin,copyPlugin],
+    HOST: IP
 };

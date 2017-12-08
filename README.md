@@ -2,9 +2,17 @@
 1. Web端做SPA，Native端做多页应用
 2. 使用Vuex
 
+# 启动
+1. npm install
+2. npm run serve
+4. 修改router-native.js 文件里的 host ：
+
+const basePath='http://172.20.16.71:10004/dist';//替换成你电脑的IP，并保证手机能访问到电脑(连同一个wifi就好啦)
+
+3. npm run dev:native
+4. 使用weexplaygroud 浏览 http://yourhost:10004/dist/pages/index.js
 
 ## Todo
-1、https://www.chungold.com/my/course/3
 
 3、https://github.com/alibaba/weex-ui   wxc-tab-page
 
