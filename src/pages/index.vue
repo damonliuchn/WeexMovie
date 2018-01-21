@@ -31,7 +31,7 @@
         'bui-icon': buiweex.buiIcon,
         'bui-button': buiweex.buiButton,
         'bui-image': buiweex.buiImage
-            
+
         },
         mixins:[mixins],
         data(){

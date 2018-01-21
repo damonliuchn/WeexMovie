@@ -28,7 +28,9 @@
             </bui-tabbar-item>
 
             <bui-tabbar-item tabId="tab2" :currentTab="currentTab">
-                <text>选项卡2</text>
+                <scroller style="height: 1000000px;">
+                    <list-movie/>
+                </scroller>
             </bui-tabbar-item>
 
             <bui-tabbar-item tabId="tab3" :currentTab="currentTab">
@@ -49,6 +51,7 @@
 
 <script>
     var buiweex = require("bui-weex");
+    import Index2 from '../index.vue'
     module.exports = {
         data: function () {
             return {
@@ -90,7 +93,8 @@
             'bui-header': buiweex.buiHeader,
             'bui-icon': buiweex.buiIcon,
             'bui-button': buiweex.buiButton,
-            'bui-image': buiweex.buiImage
+            'bui-image': buiweex.buiImage,
+            'list-movie':Index2
         },
         methods: {
             "back": function () {

@@ -67,7 +67,7 @@
     },
       methods:{
           test2() {
-              this.$router.push("/messages")
+              this.$router.push("/")
           }
       }
   }

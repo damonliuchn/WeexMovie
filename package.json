@@ -6,8 +6,10 @@
   "scripts": {
     "serve": "node tool/server.js",
     "debug": "weex debug",
+
     "build:web": "webpack --config build/webpack.web.config.js",
     "dev:web": "npm run build:web & webpack-dev-server --config build/webpack.web.config.js --inline --host localhost --port 8082",
+
     "build:native": "webpack --config build/webpack.native.config.js",
     "dev:native": "webpack --config build/webpack.native.config.js --watch"
   },
@@ -20,7 +22,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "bui-weex": "^0.1.10",
+    "bui-weex": "^0.2.1",
     "vue": "^2.1.10",
     "vue-router": "^2.3.0",
     "vuex": "^2.1.1",
