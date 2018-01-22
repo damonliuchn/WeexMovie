@@ -1,12 +1,20 @@
 /**
  * 给native 添加 vuex  和  router
  */
-
 import weexVueRouter from 'weex-vue-router'
 //web端的路由在web-router里定义，在app.js里引用
 import routes from '../router-native.js'
 import store from '../vuex/vuex.js'
 Vue.use(weexVueRouter,{routes,weex});
+/**
+ * 通用module
+ */
+const modal = weex.requireModule('modal')
+const storage = weex.requireModule('storage')
+/**
+ * 通用UI
+ */
+var buiweex = require("bui-weex");
 
 export default {
     data() {
@@ -29,6 +37,9 @@ export default {
             self.apiDomain='http://192.168.31.241:8080';//替换成你电脑的IP，并保证手机能访问到电脑(连同一个wifi就好啦)
         }
         this.$store = store;//需要手动放进来
+        this.modal = modal;
+        this.storage = storage;
+        this.buiweex = buiweex;
     },
     methods: {
         request(opt) {

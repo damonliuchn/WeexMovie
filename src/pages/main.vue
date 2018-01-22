@@ -3,7 +3,7 @@
         <bui-header title="选项卡(bui-tabbar)" :leftItem="leftItem" @leftClick="back"></bui-header>
         <slider class="slider" @change="onSliderChange" :index="currentTab">
             <div>
-                <home />
+                <home/>
             </div>
             <div class="slider-item">
                 <text class="h1">tab1</text>
@@ -28,11 +28,14 @@
     }
 </style>
 <script>
+    import mixins from '../mixins'
     var buiweex = require("bui-weex");
-    import Home from './tabbar-demo.vue'
+    import Home from './home.vue'
     module.exports = {
+        mixins:[mixins],
         data: function () {
             return {
+                state: '----',
                 leftItem: {
                     icon: 'ion-chevron-left'
                 },
@@ -52,6 +55,21 @@
                     }
                 ]
             }
+        },
+        created: function () {
+            this.route=this.$route;
+
+
+
+           this.storage.getItem('name', event => {
+                console.log('get value:', event.data)
+                this.state = 'value: ' + event.data
+            })
+
+            this.modal.toast({
+                message: 'This is a toast'+this.state,
+                duration: 0.3
+            })
         },
         components: {
             "bui-tabbar": buiweex.buiTabbar,

@@ -30,9 +30,12 @@
     }
 </style>
 <script>
+    import mixins from '../mixins'
+    import Index2 from './movie-list.vue'
+
     var buiweex = require("bui-weex");
-    import Index2 from '../index.vue'
     module.exports = {
+        mixins:[mixins],
         data: function () {
             return {
                 leftItem: {
