@@ -16,7 +16,7 @@
 
 <script>
     import mixins from '../mixins'
-    module.exports = {
+    export default {
         mixins:[mixins],
         data(){
             return {

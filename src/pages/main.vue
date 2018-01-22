@@ -29,8 +29,8 @@
 </style>
 <script>
     import mixins from '../mixins'
-    var buiweex = require("bui-weex");
     import Home from './home.vue'
+    import buiweex from "bui-weex";
     module.exports = {
         mixins:[mixins],
         data: function () {
