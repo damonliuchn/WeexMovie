@@ -5,7 +5,7 @@ import weexVueRouter from 'weex-vue-router'
 //web端的路由在web-router里定义，在app.js里引用
 import routes from '../router-native.js'
 import store from '../vuex/vuex.js'
-Vue.use(weexVueRouter,{routes,weex});
+Vue.use(weexVueRouter,{routes,weex});//加入了实例属性router
 /**
  * 通用module
  */
@@ -36,7 +36,12 @@ export default {
         if(!self.web){
             self.apiDomain='http://192.168.31.241:8080';//替换成你电脑的IP，并保证手机能访问到电脑(连同一个wifi就好啦)
         }
+        /** 实例属性 **/
+        //this.$router
         this.$store = store;//需要手动放进来
+        /** 普通属性 **/
+        this.store = store;
+        this.router = this.$router;
         this.modal = modal;
         this.storage = storage;
         this.buiweex = buiweex;

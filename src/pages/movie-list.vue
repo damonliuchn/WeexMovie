@@ -42,9 +42,9 @@
         created () {
             let self = this
             this.fetchList({type:1})
-            this.$store.watch(
+            this.store.watch(
                 function (state) {
-                    return self.$store.getters.getListData;
+                    return self.store.getters.getListData;
                 },
                 function (newData) {
                     self.loading = false
@@ -56,11 +56,11 @@
         },
         computed: {
             test () {
-                return this.$store.state.users
+                return this.store.state.users
             },
             ...mapGetters(
                 [
-                'getListData'//this.$store.state.users
+                'getListData'//this.store.state.users
             ]
     )
         },

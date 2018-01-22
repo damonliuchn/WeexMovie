@@ -57,10 +57,6 @@
             }
         },
         created: function () {
-            this.route=this.$route;
-
-
-
            this.storage.getItem('name', event => {
                 console.log('get value:', event.data)
                 this.state = 'value: ' + event.data

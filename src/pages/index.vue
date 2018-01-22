@@ -20,13 +20,10 @@
         mixins:[mixins],
         data(){
             return {
-                state:'',
-                route:{}
+                state:''
             }
         },
         created: function () {
-            this.route=this.$route;
-
             //var bundleUrl = this.$getConfig().bundleUrl;
             //bundleUrl = new String(bundleUrl);
 
@@ -55,11 +52,11 @@
         },
         methods:{
             goback() {
-                this.$router.back()
+                this.router.back()
             },
             goMain(){
-                this.$router.back()
-                this.$router.push('/main')
+                this.router.back()
+                this.router.push('/main')
             }
         }
     };
