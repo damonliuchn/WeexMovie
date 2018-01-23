@@ -10,10 +10,15 @@ var entry = {};
 var srcPath  = path.join(__dirname, '../src');
 var outDir = 'dist';
 
+var bannerPlugin = new webpack.BannerPlugin(
+    '// { "framework": "Vue" }\n',
+    { raw: true }
+)
+
 //开发环境时，将开发机的IP替换到代码文件里
 const ip = require('ip');
 const IP = ip.address();
-console.log('----------use playground run: http://'+IP+':10004/dist/pages/index.js');//http://blog.csdn.net/fungleo/article/details/54574049
+console.log('----------   use playground run: http://'+IP+':10004/dist/pages/index.js');//http://blog.csdn.net/fungleo/article/details/54574049
 fs.readFile(srcPath + "/router-native.js", 'utf8', function (err,data) {
     if (err) {
         return console.log(err);
@@ -25,35 +30,32 @@ fs.readFile(srcPath + "/router-native.js", 'utf8', function (err,data) {
 });
 
 
-var bannerPlugin = new webpack.BannerPlugin(
-    '// { "framework": "Vue" }\n',
-    { raw: true }
-)
-
 //  从项目根目录 输出到 输出文件夹目录，文件拷贝插件,将图片和字体拷贝到dist目录
 var copyPlugin = new copy([
-    {from: './node_modules/bui-weex/src/font', to:  "font"}
+    {from: './node_modules/bui-weex/src/font', to:  "pages/font"},
+    {from: './assets/image', to: "pages/image"}
 ])
 
 //搜集入口文件
-function walk(root,dir) {
-    var directory = path.join(root, dir);
-    fs.readdirSync(directory)
-        .forEach(function (fileOrDir) {
-            var fullpath = path.join(directory, fileOrDir);
-            var stat = fs.statSync(fullpath);
-            if (stat.isFile() && path.extname(fullpath) === '.vue') {
-                //例如name：pages/index    path.basename获取最终文件名，.vue是过滤字符串
-                var name = path.join(dir, path.basename(fileOrDir, '.vue'));
-                entry[name] = fullpath + '?entry=true'
-            } else if (stat.isDirectory()) {
-                var subdir = path.join(dir, fileOrDir);
-                walk(root,subdir)
+function walk(fullRoot,pathDir) {
+    var fullDir = path.join(fullRoot, pathDir);
+    fs.readdirSync(fullDir)
+        .forEach(function (pathChild) {
+            var fullChild = path.join(fullDir, pathChild);
+            var statChild = fs.statSync(fullChild);
+            if (statChild.isFile() && path.extname(fullChild) === '.vue') {
+                //例如pathAndName：pages/index    path.basename获取最终文件名，.vue是过滤字符串
+                var pathAndName = path.join(pathDir, path.basename(fullChild, '.vue'));
+                entry[pathAndName] = fullChild + '?entry=true'
+            } else if (statChild.isDirectory()) {
+                var subdir = path.join(pathDir, pathChild);
+                walk(fullRoot,subdir)
             }
         })
 }
 
 walk(srcPath,'pages');
+
 module.exports = {
     entry:entry,
     output: {

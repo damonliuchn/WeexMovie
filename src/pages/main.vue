@@ -1,18 +1,18 @@
 <template>
     <div>
-        <bui-header title="选项卡(bui-tabbar)" :leftItem="leftItem" @leftClick="back"></bui-header>
+        <bui-header backgroundColor="#ff9100" title="面包影视" :leftItem="leftItem" @leftClick="back"></bui-header>
         <slider class="slider" @change="onSliderChange" :index="currentTab">
             <div>
                 <home/>
             </div>
-            <div class="slider-item">
-                <text class="h1">tab1</text>
-            </div>
-            <div class="slider-item">
-                <text class="h1">tab2</text>
-            </div>
+            <!--<div class="slider-item">-->
+                <!--<text class="h1">tab1</text>-->
+            <!--</div>-->
+            <!--<div class="slider-item">-->
+                <!--<text class="h1">tab2</text>-->
+            <!--</div>-->
         </slider>
-        <bui-tabbar :tabItems="tabItems" selectedBackground="#F77845" selectedColor="#ffffff" @change="onItemChange" v-model="currentTab"></bui-tabbar>
+        <!--<bui-tabbar :tabItems="tabItems" selectedBackground="#F77845" selectedColor="#ffffff" @change="onItemChange" v-model="currentTab"></bui-tabbar>-->
     </div>
 </template>
 
@@ -30,7 +30,7 @@
 <script>
     import mixins from '../mixins'
     import Home from './home.vue'
-    import buiweex from "bui-weex";
+//    import buiweex from "bui-weex";
     module.exports = {
         mixins:[mixins],
         data: function () {
@@ -68,12 +68,12 @@
             })
         },
         components: {
-            "bui-tabbar": buiweex.buiTabbar,
-            "bui-tabbar-item": buiweex.buiTabbarItem,
-            'bui-header': buiweex.buiHeader,
-            'bui-icon': buiweex.buiIcon,
-            'bui-button': buiweex.buiButton,
-            'bui-image': buiweex.buiImage,
+//            "bui-tabbar": buiweex.buiTabbar,
+//            "bui-tabbar-item": buiweex.buiTabbarItem,
+//            'bui-header': buiweex.buiHeader,
+//            'bui-icon': buiweex.buiIcon,
+//            'bui-button': buiweex.buiButton,
+//            'bui-image': buiweex.buiImage,
             'home':Home
         },
         methods: {

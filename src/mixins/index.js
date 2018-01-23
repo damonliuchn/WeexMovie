@@ -6,6 +6,8 @@ import weexVueRouter from 'weex-vue-router'
 import routes from '../router-native.js'
 import store from '../vuex/vuex.js'
 Vue.use(weexVueRouter,{routes,weex});//加入了实例属性router
+import buiweex from 'bui-weex'
+Vue.use(buiweex);
 /**
  * 通用module
  */
@@ -14,7 +16,7 @@ const storage = weex.requireModule('storage')
 /**
  * 通用UI
  */
-var buiweex = require("bui-weex");
+// var buiweex = require("bui-weex");
 
 export default {
     data() {
@@ -44,7 +46,7 @@ export default {
         this.router = this.$router;
         this.modal = modal;
         this.storage = storage;
-        this.buiweex = buiweex;
+        //this.buiweex = buiweex;
     },
     methods: {
         request(opt) {

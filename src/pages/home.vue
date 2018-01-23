@@ -6,7 +6,7 @@
                 <list-movie/>
             </div>
             <div class="slider-item">
-                <text class="h1">tab1</text>
+                <bui-image src="/image/logo.png" width="244px" height="172px"></bui-image>
             </div>
             <div class="slider-item">
                 <text class="h1">tab2</text>
@@ -33,7 +33,7 @@
     import mixins from '../mixins'
     import Index2 from './movie-list.vue'
 
-    var buiweex = require("bui-weex");
+//    var buiweex = require("bui-weex");
     module.exports = {
         mixins:[mixins],
         data: function () {
@@ -41,7 +41,7 @@
                 leftItem: {
                     icon: 'ion-chevron-left'
                 },
-                currentTab:1,
+                currentTab:0,
                 tabItems: [
                     {
                         title: "首页",
@@ -63,12 +63,12 @@
             }
         },
         components: {
-            "bui-tabbar": buiweex.buiTabbar,
-            "bui-tabbar-item": buiweex.buiTabbarItem,
-            'bui-header': buiweex.buiHeader,
-            'bui-icon': buiweex.buiIcon,
-            'bui-button': buiweex.buiButton,
-            'bui-image': buiweex.buiImage,
+//            "bui-tabbar": buiweex.buiTabbar,
+//            "bui-tabbar-item": buiweex.buiTabbarItem,
+//            'bui-header': buiweex.buiHeader,
+//            'bui-icon': buiweex.buiIcon,
+//            'bui-button': buiweex.buiButton,
+//            'bui-image': buiweex.buiImage,
             'list-movie':Index2
         },
         methods: {
@@ -79,8 +79,7 @@
 
             },
             onSliderChange(e){
-                var index = e.index;
-                this.currentTab=index;
+                this.currentTab=e.index;
             }
         }
     }
