@@ -1,6 +1,10 @@
 <template>
     <div>
-        <bui-header backgroundColor="#ff9100" title="面包影视" :leftItem="leftItem" @leftClick="back"></bui-header>
+        <bui-header backgroundColor="#ff9100" title="面包影视">
+            <div slot="right" >
+                <bui-icon name="ion-ios-search-strong" color="#ffffff" @click="back2"></bui-icon>
+             </div>
+        </bui-header>
         <slider class="slider" @change="onSliderChange" :index="currentTab">
             <div>
                 <home/>
@@ -35,9 +39,11 @@
         mixins:[mixins],
         data: function () {
             return {
+                backTimestamp:0,
                 state: '----',
-                leftItem: {
-                    icon: 'ion-chevron-left'
+                rightItem: {
+                    icon: 'ion-ios-search-strong',
+                    text: '更多'
                 },
                 currentTab:0,
                 tabItems: [
@@ -56,16 +62,25 @@
                 ]
             }
         },
-        created: function () {
+        created() {
            this.storage.getItem('name', event => {
                 console.log('get value:', event.data)
                 this.state = 'value: ' + event.data
             })
-
-            this.modal.toast({
-                message: 'This is a toast'+this.state,
-                duration: 0.3
-            })
+        },
+        mounted () {
+            this.globalEvent.removeEventListener("androidback")
+            this.globalEvent.addEventListener("androidback", e =>  {
+                if ((new Date().getTime() - this.backTimestamp) > 2000) {
+                    this.modal.toast({
+                        message: '再按一次退出',
+                        duration: 0.3
+                    })
+                    this.backTimestamp = new Date().getTime();
+                } else {
+                    this.router.back()
+                }
+            });
         },
         components: {
 //            "bui-tabbar": buiweex.buiTabbar,
@@ -77,8 +92,11 @@
             'home':Home
         },
         methods: {
-            back() {
-                this.$pop();
+            back2() {
+                this.modal.toast({
+                    message: 'This is a toast',
+                    duration: 0.3
+                })
             },
             onItemChange(index){
 

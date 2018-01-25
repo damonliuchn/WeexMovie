@@ -1,6 +1,6 @@
 <template>
     <div>
-        <bui-tabbar :tabItems="tabItems" showSelectedLine=true @change="onItemChange" v-model="currentTab"></bui-tabbar>
+        <bui-tabbar selectedColor="#ff9100" borderBottomColor="#ff9100" :tabItems="tabItems" showSelectedLine=true @change="onItemChange" v-model="currentTab"></bui-tabbar>
         <slider class="slider" @change="onSliderChange" :index="currentTab">
             <div>
                 <list-movie/>
@@ -44,20 +44,16 @@
                 currentTab:0,
                 tabItems: [
                     {
-                        title: "首页",
-                        icon: "ion-home"
+                        title: "电影"
                     },
                     {
-                        icon: "ion-planet",
-                        title: "探索"
+                        title: "电视剧"
                     },
                     {
-                        icon: "ion-ios-cart",
-                        title: "商城"
+                        title: "综艺"
                     },
                     {
-                        icon: "ion-ribbon-a",
-                        title: "奖励"
+                        title: "动漫"
                     }
                 ]
             }

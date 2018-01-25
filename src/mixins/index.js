@@ -6,6 +6,9 @@ import weexVueRouter from 'weex-vue-router'
 import routes from '../router-native.js'
 import store from '../vuex/vuex.js'
 Vue.use(weexVueRouter,{routes,weex});//加入了实例属性router
+/**
+ * 通用UI
+ */
 import buiweex from 'bui-weex'
 Vue.use(buiweex);
 /**
@@ -13,10 +16,8 @@ Vue.use(buiweex);
  */
 const modal = weex.requireModule('modal')
 const storage = weex.requireModule('storage')
-/**
- * 通用UI
- */
-// var buiweex = require("bui-weex");
+const globalEvent = weex.requireModule('globalEvent');
+
 
 export default {
     data() {
@@ -46,7 +47,18 @@ export default {
         this.router = this.$router;
         this.modal = modal;
         this.storage = storage;
-        //this.buiweex = buiweex;
+        this.globalEvent = globalEvent;
+        /** 注册Android返回键 **/
+        // if(this.$mixinsOptions['run']){
+        //     this.modal.toast({
+        //         message: 'This is a mixins toast',
+        //         duration: 0.3
+        //     })
+        // }
+        //这里会先执行 子Vue的created方法内的方法语句  再执行mixins的created方法内的方法语句  很奇怪
+        this.globalEvent.addEventListener("androidback", e =>  {
+            this.router.back()
+        });
     },
     methods: {
         request(opt) {

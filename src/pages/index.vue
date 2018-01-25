@@ -27,10 +27,7 @@
             //var bundleUrl = this.$getConfig().bundleUrl;
             //bundleUrl = new String(bundleUrl);
 
-            this.modal.toast({
-                message: 'This is a toast',
-                duration: 0.3
-            })
+
 
 //            storage.setItem('name', 'Hanks', event => {
 //                this.state = 'set success'
