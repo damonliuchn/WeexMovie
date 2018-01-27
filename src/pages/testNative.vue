@@ -8,7 +8,7 @@
         <text>启动页面{{}}</text>
 
 
-        <text class="button" @click="goMain2()">去主页le</text>
+        <text class="button" @click="goMain()">去主页le</text>
         <bui-image src="/image/logo.png" width="244px" height="172px"></bui-image>
 
     </div>
@@ -26,8 +26,8 @@
         },
         computed: {
             userId () {
-                if (this.$router && this.$router.params) {
-                    return this.$router.params.id
+                if (this.router && this.router.params) {
+                    return this.router.params.id
                 }
                 return 'Hanks10100'
             }
@@ -36,10 +36,11 @@
 //            }
         },
         created: function () {
-            //var bundleUrl = this.$getConfig().bundleUrl;
-            //bundleUrl = new String(bundleUrl);
+            var bundleUrl = this.$getConfig().bundleUrl;
+            bundleUrl = new String(bundleUrl);
 
-            console.log('dddddd'+this.userId)
+
+            console.log('aaaaaaaa'+this.userId + bundleUrl)
 
 //            storage.setItem('name', 'Hanks', event => {
 //                this.state = 'set success'
@@ -57,9 +58,7 @@
 //                })
 //            })
 
-            setTimeout(() =>{
-                this.goMain()
-            }, 500);
+
 
         },
         mounted () {
@@ -70,11 +69,7 @@
                 this.router.back()
             },
             goMain(){
-                this.router.back()
-                this.router.push('/testNative/123')
-            }
-            ,goMain2(){
-                this.router.push('/native/movieDetail?url=www.baidu.com')
+
             }
         }
     };
