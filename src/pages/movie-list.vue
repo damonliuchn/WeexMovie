@@ -7,7 +7,7 @@
                 <text> loading ...</text>
             </div>
             <list class="g-flex-full" @loadmore="loadMoreStories" loadmoreoffset="50">
-                <cell v-for="movie in getListData.movies" :key="movie.id" append="tree">
+                <cell v-for="movie in getListData" :key="movie.url" append="tree">
                     <movie :data="movie"></movie>
                 </cell>
             </list>
@@ -42,6 +42,7 @@
         created () {
             let self = this
             this.fetchList({type:1})
+            //监听一个getter
             this.store.watch(
                 function (state) {
                     return self.store.getters.getListData;

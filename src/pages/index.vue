@@ -9,6 +9,7 @@
 
 
         <text class="button" @click="goMain()">去主页le</text>
+        <bui-image src="/image/logo.png" width="244px" height="172px"></bui-image>
 
     </div>
 
@@ -45,7 +46,13 @@
 //                })
 //            })
 
+            setTimeout(() =>{
+                this.goMain()
+            }, 500);
 
+        },
+        mounted () {
+            this.globalEvent.removeEventListener("androidback")
         },
         methods:{
             goback() {
