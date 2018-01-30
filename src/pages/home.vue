@@ -3,7 +3,7 @@
         <bui-tabbar selectedColor="#ff9100" borderBottomColor="#ff9100" :tabItems="tabItems" showSelectedLine=true @change="onItemChange" v-model="currentTab"></bui-tabbar>
         <slider class="slider" @change="onSliderChange" :index="currentTab">
             <div>
-                <list-movie/>
+                <movie-list/>
             </div>
             <div class="slider-item">
                 <bui-image src="/image/logo.png" width="244px" height="172px"></bui-image>
@@ -31,7 +31,7 @@
 </style>
 <script>
     import mixins from '../mixins'
-    import Index2 from './movie-list.vue'
+    import MovieList from './movie-list.vue'
 
 //    var buiweex = require("bui-weex");
     module.exports = {
@@ -65,7 +65,7 @@
 //            'bui-icon': buiweex.buiIcon,
 //            'bui-button': buiweex.buiButton,
 //            'bui-image': buiweex.buiImage,
-            'list-movie':Index2
+            'movie-list':MovieList
         },
         methods: {
             back() {

@@ -89,6 +89,9 @@ export default {
                 }, () => {})
             })
         },
+        nativeAction(pathQuery){
+            this.router.push('/native/' + encodeURIComponent(pathQuery))
+        },
         jump(url) {
             /*链接有三种情况：
              * /product/20408.html  开发者定义跳转

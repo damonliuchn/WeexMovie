@@ -71,10 +71,11 @@
             },
             goMain(){
                 this.router.back()
-                this.router.push('/testNative/123')
+                //this.router.push('/testNative/123')
+                this.router.push('/main')
             }
             ,goMain2(){
-                this.router.push('/native/movieDetail?url=www.baidu.com')
+                this.router.push('/native/'+encodeURIComponent('/provider/log?text=sssssss'))
             }
         }
     };

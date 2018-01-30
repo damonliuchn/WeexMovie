@@ -6,7 +6,7 @@ const basePath = 'http://172.20.12.26:10004/dist';//替换成你电脑的IP，�
 export default [
     {path:'/',component:basePath+'/pages/index.js'},
     {path:'/testNative/:id',component:basePath+'/pages/testNative.js'},
-    {path:'/native/:pathQuery',component:'native:native'},
+    {path:'/native/:pathQuery',component:'http://native'},
     {name:'main',path:'/main',component:basePath+'/pages/main.js'},
     //{path:'/',component:basePath+'/pages/index.js'},
     // {path:'/messages',component:basePath+'/weex-ui-sample/tab-page/index.js'}

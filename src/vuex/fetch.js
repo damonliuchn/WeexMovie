@@ -60,10 +60,11 @@ function find(source, regExp, start, end) {
 }
 export function fetch() {
     return new Promise((resolve, reject) => {
+        var host = "http://d.aaccy.com";
         stream.fetch(
             {
                 method: 'GET',
-                url: `http://d.aaccy.com/vod-list-id-1-pg-1-order--by-hits-class-0-year-0-letter--area--lang-.html`,
+                url: host + `/vod-list-id-1-pg-1-order--by-hits-class-0-year-0-letter--area--lang-.html`,
                 type: 'html',
                 headers:{
                     "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
@@ -90,9 +91,9 @@ export function fetch() {
                                 var status = find(element,/class="title">[\s\S]*?</, 14, 1)
                                 var titleTmp = find(element,/<h2>[\s\S]*?<\/h2>/, 4, 5);
                                 var title = find(titleTmp,/>[\s\S]*?</, 1, 1);
-                                var url = find(titleTmp,/href="[\s\S]*?"/, 6, 1);
+                                var url = host + find(titleTmp,/href="[\s\S]*?"/, 6, 1);
                                 var zhuyan = find(element,/<p>[\s\S]*?<\/p>/, 3, 4)
-                                var img;
+                                var img = "http:"+ find(element,/data-original="[\s\S]*?"/, 15, 1)
                                 object.score = score;
                                 object.status = status;
                                 object.title = title;

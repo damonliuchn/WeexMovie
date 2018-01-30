@@ -54,7 +54,9 @@
 
 <script>
 
-  export default {
+    import mixins from '../mixins'
+    export default {
+        mixins:[mixins],
     props: {
       data: {
         type: Object,
@@ -67,7 +69,7 @@
     },
       methods:{
           test2() {
-              this.$router.push("/")
+              this.nativeAction('/activity/movieDetail?url='+this.data.url)
           }
       }
   }

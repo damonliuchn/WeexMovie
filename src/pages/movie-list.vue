@@ -17,22 +17,16 @@
 
 <script>
     import mixins from '../mixins'
-    //Vue.mixin(mixins)
     import { mapGetters, mapActions } from 'vuex'
     import Movie from '../components/movie.vue'
     import { buiImageSlider } from 'bui-weex';
+    //Vue.mixin(mixins)
 //    var buiweex = require("bui-weex");
     export default  {
         mixins:[mixins],
         components: {
             Movie,buiImageSlider,
-//         "bui-tabbar": buiweex.buiTabbar,
-//        "bui-tabbar-item": buiweex.buiTabbarItem,
-//        'bui-header': buiweex.buiHeader,
-//        'bui-icon': buiweex.buiIcon,
-//        'bui-button': buiweex.buiButton,
-//        'bui-image': buiweex.buiImage
-
+//         "bui-tabbar": buiweex.buiTabbar
         },
         data(){
             return {
