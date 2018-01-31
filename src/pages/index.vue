@@ -1,5 +1,3 @@
-
-
 <template>
 
     <div>
@@ -17,11 +15,12 @@
 
 <script>
     import mixins from '../mixins'
+    import pageMixins from '../mixins/page-mixins'
     export default {
-        mixins:[mixins],
+        mixins: [mixins, pageMixins],
         data(){
             return {
-                state:''
+                state: ''
             }
         },
         computed: {
@@ -39,7 +38,7 @@
             //var bundleUrl = this.$getConfig().bundleUrl;
             //bundleUrl = new String(bundleUrl);
 
-            console.log('dddddd'+this.userId)
+            console.log('dddddd' + this.userId)
 
 //            storage.setItem('name', 'Hanks', event => {
 //                this.state = 'set success'
@@ -57,15 +56,17 @@
 //                })
 //            })
 
-            setTimeout(() =>{
+            setTimeout(() => {
                 this.goMain()
             }, 500);
 
+            //this.globalEvent.removeEventListener("androidback")
+            this.log('index create done')
         },
         mounted () {
-            this.globalEvent.removeEventListener("androidback")
+            this.log('index mounted start')
         },
-        methods:{
+        methods: {
             goback() {
                 this.router.back()
             },
@@ -74,8 +75,8 @@
                 //this.router.push('/testNative/123')
                 this.router.push('/main')
             }
-            ,goMain2(){
-                this.router.push('/native/'+encodeURIComponent('/provider/log?text=sssssss'))
+            , goMain2(){
+                this.router.push('/native/' + encodeURIComponent('/provider/log?text=sssssss'))
             }
         }
     };

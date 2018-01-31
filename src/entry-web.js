@@ -12,4 +12,4 @@ const router = new VueRouter({
     routes
 });
 
-new Vue({el:'#root',router});
+new Vue({el: '#root', router});

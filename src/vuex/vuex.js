@@ -12,7 +12,7 @@ const store = new Vuex.Store({
     actions,
     mutations,
     getters,
-    state:states//或者 把 states改为state
+    state: states//或者 把 states改为state
 })
 
 export default store

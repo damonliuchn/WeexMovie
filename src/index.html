@@ -11,18 +11,30 @@
     <script src="../node_modules/vue/dist/vue.js"></script>
 
     <style>
-        .weex-text{font-family:"Microsoft YaHei UI" !important;}
-        .slide-fade-enter-active {transition: all .3s ease-in-out;}
-        .slide-fade-leave-active {transition: all .5s ease-in-out;}
-        .slide-fade-enter, .slide-fade-leave-active {transform: translateX(20px);opacity: 0;}
+        .weex-text {
+            font-family: "Microsoft YaHei UI" !important;
+        }
+
+        .slide-fade-enter-active {
+            transition: all .3s ease-in-out;
+        }
+
+        .slide-fade-leave-active {
+            transition: all .5s ease-in-out;
+        }
+
+        .slide-fade-enter, .slide-fade-leave-active {
+            transform: translateX(20px);
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
-    <div id="root">
-        <transition name="slide-fade">
-            <router-view></router-view>
-        </transition>
-    </div>
-    <script src="./entry-web.js"></script>
+<div id="root">
+    <transition name="slide-fade">
+        <router-view></router-view>
+    </transition>
+</div>
+<script src="./entry-web.js"></script>
 </body>
 </html>

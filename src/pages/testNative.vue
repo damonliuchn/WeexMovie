@@ -1,5 +1,3 @@
-
-
 <template>
 
     <div>
@@ -18,10 +16,10 @@
 <script>
     import mixins from '../mixins'
     export default {
-        mixins:[mixins],
+        mixins: [mixins],
         data(){
             return {
-                state:''
+                state: ''
             }
         },
         computed: {
@@ -40,7 +38,7 @@
             bundleUrl = new String(bundleUrl);
 
 
-            console.log('aaaaaaaa'+this.userId + bundleUrl)
+            console.log('aaaaaaaa' + this.userId + bundleUrl)
 
 //            storage.setItem('name', 'Hanks', event => {
 //                this.state = 'set success'
@@ -59,12 +57,11 @@
 //            })
 
 
-
         },
         mounted () {
             this.globalEvent.removeEventListener("androidback")
         },
-        methods:{
+        methods: {
             goback() {
                 this.router.back()
             },

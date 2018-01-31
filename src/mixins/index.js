@@ -5,7 +5,7 @@ import weexVueRouter from 'weex-vue-router'
 //web端的路由在web-router里定义，在app.js里引用
 import routes from '../router-native.js'
 import store from '../vuex/vuex.js'
-Vue.use(weexVueRouter,{routes,weex});//加入了实例属性router
+Vue.use(weexVueRouter, {routes, weex});//加入了实例属性router
 /**
  * 通用UI
  */
@@ -23,21 +23,21 @@ export default {
     data() {
         return {
             rpx: 1,
-            apiDomain:'dddd',
-            android:weex.config.env.platform.toLowerCase()=='android',
-            ios:weex.config.env.platform.toLowerCase()=='ios',
-            web:weex.config.env.platform.toLowerCase()=='web'
+            apiDomain: 'dddd',
+            android: weex.config.env.platform.toLowerCase() == 'android',
+            ios: weex.config.env.platform.toLowerCase() == 'ios',
+            web: weex.config.env.platform.toLowerCase() == 'web'
         }
     },
     created() {
-        let self=this;
+        let self = this;
         let env = weex.config.env;
-        let rWidth=env.deviceWidth;
+        let rWidth = env.deviceWidth;
         env.deviceWidth > 828 && (rWidth = env.deviceWidth / 3 * 2);
         self.rpx = 750 / rWidth;
         //self.apiDomain='http://xiazhou.me/example/xiazhou-weex';
-        if(!self.web){
-            self.apiDomain='http://192.168.31.241:8080';//替换成你电脑的IP，并保证手机能访问到电脑(连同一个wifi就好啦)
+        if (!self.web) {
+            self.apiDomain = 'http://192.168.31.241:8080';//替换成你电脑的IP，并保证手机能访问到电脑(连同一个wifi就好啦)
         }
         /** 实例属性 **/
         //this.$router
@@ -48,17 +48,6 @@ export default {
         this.modal = modal;
         this.storage = storage;
         this.globalEvent = globalEvent;
-        /** 注册Android返回键 **/
-        // if(this.$mixinsOptions['run']){
-        //     this.modal.toast({
-        //         message: 'This is a mixins toast',
-        //         duration: 0.3
-        //     })
-        // }
-        //这里会先执行 子Vue的created方法内的方法语句  再执行mixins的created方法内的方法语句  很奇怪
-        this.globalEvent.addEventListener("androidback", e =>  {
-            this.router.back()
-        });
     },
     methods: {
         request(opt) {
@@ -76,7 +65,7 @@ export default {
             return new Promise((resolve, reject) => {
                 stream.fetch({
                     method: option.type,
-                    url: self.apiDomain+option.url,
+                    url: self.apiDomain + option.url,
                     type: option.dataType,
                     //headers:{'content-type': 'application/json'},
                     body: option.data
@@ -86,11 +75,21 @@ export default {
                     } else {
                         reject(response)
                     }
-                }, () => {})
+                }, () => {
+                })
             })
         },
         nativeAction(pathQuery){
             this.router.push('/native/' + encodeURIComponent(pathQuery))
+        },
+        log(log){
+            this.nativeAction('/provider/log?text=' + log)
+        },
+        toast(text){
+            this.modal.toast({
+                message: text,
+                duration: 0.3
+            })
         },
         jump(url) {
             /*链接有三种情况：
@@ -118,6 +117,7 @@ export default {
                     return !1;
                 return !0
             }
+
             var p = p || {};
             var t = isEmptyObject(p) && c ? c : p;
             for (let i in p) {

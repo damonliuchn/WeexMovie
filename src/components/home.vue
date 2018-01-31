@@ -1,18 +1,19 @@
 <template>
     <div>
-        <bui-tabbar selectedColor="#ff9100" borderBottomColor="#ff9100" :tabItems="tabItems" showSelectedLine=true @change="onItemChange" v-model="currentTab"></bui-tabbar>
+        <bui-tabbar selectedColor="#ff9100" borderBottomColor="#ff9100" :tabItems="tabItems" showSelectedLine=true
+                    @change="onItemChange" v-model="currentTab"></bui-tabbar>
         <slider class="slider" @change="onSliderChange" :index="currentTab">
             <div>
-                <movie-list/>
+                <movie-list :videoType="1"/>
             </div>
-            <div class="slider-item">
+            <div>
                 <bui-image src="/image/logo.png" width="244px" height="172px"></bui-image>
             </div>
-            <div class="slider-item">
-                <text class="h1">tab2</text>
+            <div>
+                <movie-list :videoType="2"/>
             </div>
-            <div class="slider-item">
-                <text class="h1">tab3</text>
+            <div>
+                <movie-list :videoType="4"/>
             </div>
         </slider>
     </div>
@@ -20,10 +21,11 @@
 
 <style lang="sass" src="bui-weex/src/css/buiweex.scss"></style>
 <style>
-    .slider{
-        flex:1;
+    .slider {
+        flex: 1;
     }
-    .slider-item{
+
+    .slider-item {
         width: 750px;
         justify-content: center;
         align-items: center;
@@ -32,16 +34,15 @@
 <script>
     import mixins from '../mixins'
     import MovieList from './movie-list.vue'
-
-//    var buiweex = require("bui-weex");
+    //    var buiweex = require("bui-weex");
     module.exports = {
-        mixins:[mixins],
+        mixins: [mixins],
         data: function () {
             return {
                 leftItem: {
                     icon: 'ion-chevron-left'
                 },
-                currentTab:0,
+                currentTab: 0,
                 tabItems: [
                     {
                         title: "电影"
@@ -65,7 +66,10 @@
 //            'bui-icon': buiweex.buiIcon,
 //            'bui-button': buiweex.buiButton,
 //            'bui-image': buiweex.buiImage,
-            'movie-list':MovieList
+            'movie-list': MovieList
+        },
+        created() {
+            this.log('home created done')
         },
         methods: {
             back() {
@@ -75,7 +79,7 @@
 
             },
             onSliderChange(e){
-                this.currentTab=e.index;
+                this.currentTab = e.index;
             }
         }
     }

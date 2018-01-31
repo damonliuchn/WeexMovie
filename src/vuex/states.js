@@ -1,3 +1,3 @@
-export  const states = {
+export const states = {
     users: []
 }

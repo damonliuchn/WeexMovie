@@ -17,25 +17,31 @@
 
 <script>
     import mixins from '../mixins'
-    import { mapGetters, mapActions } from 'vuex'
-    import Movie from '../components/movie.vue'
-    import { buiImageSlider } from 'bui-weex';
+    import {mapGetters, mapActions} from 'vuex'
+    import Movie from './movie.vue'
+    import {buiImageSlider} from 'bui-weex';
     //Vue.mixin(mixins)
-//    var buiweex = require("bui-weex");
+    //    var buiweex = require("bui-weex");
     export default  {
-        mixins:[mixins],
+        mixins: [mixins],
         components: {
-            Movie,buiImageSlider,
+            Movie, buiImageSlider,
 //         "bui-tabbar": buiweex.buiTabbar
+        },
+        props: {
+            videoType: {
+                type: String,
+                required: true
+            }
         },
         data(){
             return {
-                loading:true
+                loading: true
             }
         },
         created () {
             let self = this
-            this.fetchList({type:1})
+            this.fetchList({type: this.videoType})
             //监听一个getter
             this.store.watch(
                 function (state) {
@@ -48,6 +54,7 @@
                     deep: true //add this if u need to watch object properties change etc.
                 }
             );
+            this.log('movie-list created done')
         },
         computed: {
             test () {
@@ -55,21 +62,21 @@
             },
             ...mapGetters(
                 [
-                'getListData'//this.store.state.users
-            ]
-    )
+                    'getListData'//this.store.state.users
+                ]
+            )
         },
-        watch:{
+        watch: {
             // 通过这种语法来watch就行，文档里有。。。看需求，还可以直接watch data，使用deep:true来深度观察
-            "loading" :{
-                handler(val,oldVal) {
+            "loading": {
+                handler(val, oldVal) {
 
                 },
                 // 深度观察
-                deep:true
+                deep: true
             }
         },
-        methods:{
+        methods: {
             loadMoreStories() {
 
             },
@@ -85,10 +92,12 @@
         display: flex;
         flex-direction: row;
     }
+
     .g-flex-column {
         display: flex;
         flex-direction: column;
     }
+
     .g-flayer {
         position: absolute;
         left: 0;
@@ -98,13 +107,13 @@
     }
 
     .g-flex-center {
-        flex:1;
-        justify-content: center;/*针对子view 是行内元素才起作用*/
-        align-items:center;/*针对子view 是行内元素才起作用*/
+        flex: 1;
+        justify-content: center; /*针对子view 是行内元素才起作用*/
+        align-items: center; /*针对子view 是行内元素才起作用*/
     }
 
     .g-flex-full {
-        flex:1;
+        flex: 1;
     }
 
     .c-red {
