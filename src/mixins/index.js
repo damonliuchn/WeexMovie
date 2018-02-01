@@ -1,11 +1,15 @@
 /**
- * 给native 添加 vuex  和  router
+ * 导入weex-vue-router，仅native环境可用
  */
 import weexVueRouter from 'weex-vue-router'
-//web端的路由在web-router里定义，在app.js里引用
-import routes from '../router-native.js'
-import store from '../vuex/vuex.js'
-Vue.use(weexVueRouter, {routes, weex});//加入了实例属性router
+import routes from '../router-native.js'//web端的路由在web-router里定义，在app.js里引用
+if (WXEnvironment.platform !== 'Web') {
+    Vue.use(weexVueRouter, {routes, weex});//加入了实例属性router
+}
+/**
+ * 导入Vuex
+ */
+import vuexStore from '../vuex/vuex.js'
 /**
  * 通用UI
  */
@@ -41,9 +45,9 @@ export default {
         }
         /** 实例属性 **/
         //this.$router
-        this.$store = store;//需要手动放进来
+        //this.$store = vuexStore;//需要手动放进来 或者 使用store:vuexStore
         /** 普通属性 **/
-        this.store = store;
+        this.store = this.$store;
         this.router = this.$router;
         this.modal = modal;
         this.storage = storage;
@@ -131,5 +135,7 @@ export default {
             }
             return t;
         }
-    }
+    },
+    store:vuexStore
+
 }
