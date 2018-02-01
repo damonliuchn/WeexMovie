@@ -36,7 +36,7 @@
             }
         },
         created () {
-            this.searchList({keyWord: this.keyWord})
+
         },
         computed: {
             searchResult () {
@@ -47,7 +47,16 @@
             ...mapActions([
                 'searchList'
             ])
-        }
+        },
+        watch: {
+            "keyWord": {
+                handler(val,oldVal) {
+                    this.searchList({keyWord: this.keyWord})
+                },
+                // 深度观察
+                deep: true
+            }
+        },
     };
 </script>
 
