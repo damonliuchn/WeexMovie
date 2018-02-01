@@ -1,3 +1,6 @@
 export const states = {
-    users: []
+    type1:[],
+    type2:[],
+    type3:[],
+    type4:[]
 }

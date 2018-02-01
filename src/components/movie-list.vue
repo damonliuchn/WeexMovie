@@ -3,11 +3,11 @@
     <!-- Flow  Float  Flayer  Flexbox  四种布局方式 -->
     <div class="g-flex-column">
         <div class="g-flex-full">
-            <div class="g-flayer g-flex-center" v-if="loading">
-                <text> loading ...</text>
-            </div>
+            <!--<div class="g-flayer g-flex-center" v-if="loading">-->
+                <!--<text> loading ...</text>-->
+            <!--</div>-->
             <list class="g-flex-full" @loadmore="loadMoreStories" loadmoreoffset="50">
-                <cell v-for="movie in getListData" :key="movie.url" append="tree">
+                <cell v-for="movie in test" :key="movie.url" append="tree">
                     <movie :data="movie"></movie>
                 </cell>
             </list>
@@ -41,30 +41,35 @@
         },
         created () {
             let self = this
+            //Vue.set(this.store.state.users, 'aaa', 'testing');
             this.fetchList({type: this.videoType})
             //监听一个getter
-            this.store.watch(
-                function (state) {
-                    return self.store.getters.getListData;
-                },
-                function (newData) {
-                    self.loading = false
-                },
-                {
-                    deep: true //add this if u need to watch object properties change etc.
-                }
-            );
+//            this.store.watch(
+//                function (state) {
+//                    return self.store.getters.getListData[this.videoType];
+//                },
+//                function (newData) {
+//                    self.loading = false
+//                },
+//                {
+//                    deep: true //add this if u need to watch object properties change etc.
+//                }
+//            );
             this.log('movie-list created done')
         },
         computed: {
             test () {
-                return this.store.state.users
+                //return this.store.state.users[this.videoType]
+                var key = "type" + this.videoType
+//                console.log("334total:" + key + "------" + this.store.state.users.aaa)
+//                console.log("334total:" + key + "------" + this.store.state.users.type1.length)
+                return this.store.state[key]
             },
-            ...mapGetters(
-                [
-                    'getListData'//this.store.state.users
-                ]
-            )
+//            ...mapGetters(
+//                [
+//                    'getListData'//this.store.state.users
+//                ]
+//            )
         },
         watch: {
             // 通过这种语法来watch就行，文档里有。。。看需求，还可以直接watch data，使用deep:true来深度观察
@@ -74,7 +79,21 @@
                 },
                 // 深度观察
                 deep: true
-            }
+            },
+//            "test": {
+//                handler(val, oldVal) {
+//                    console.log('dddddd')
+//                },
+//                // 深度观察
+//                deep: true
+//            },
+//            "getListData": {
+//                handler(val, oldVal) {
+//                    console.log('dddddd')
+//                },
+//                // 深度观察
+//                deep: true
+//            }
         },
         methods: {
             loadMoreStories() {

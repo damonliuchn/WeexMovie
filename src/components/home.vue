@@ -2,34 +2,64 @@
     <div>
         <bui-tabbar selectedColor="#ff9100" borderBottomColor="#ff9100" :tabItems="tabItems" showSelectedLine=true
                     @change="onItemChange" v-model="currentTab"></bui-tabbar>
-        <slider class="slider" @change="onSliderChange" :index="currentTab">
-            <div>
-                <movie-list :videoType="1"/>
-            </div>
-            <div>
-                <bui-image src="/image/logo.png" width="244px" height="172px"></bui-image>
-            </div>
-            <div>
-                <movie-list :videoType="2"/>
-            </div>
-            <div>
-                <movie-list :videoType="4"/>
-            </div>
-        </slider>
+
+        <div :class="classNameEmpty">
+            <bui-image src="/image/logo.png" width="244px" height="1px"></bui-image>
+        </div>
+        <div :class="className0">
+            <movie-list :videoType="1"/>
+        </div>
+        <div :class="className1">
+            <movie-list :videoType="1"/>
+        </div>
+        <div :class="className2">
+            <movie-list :videoType="2"/>
+        </div>
+        <div :class="className3">
+            <movie-list :videoType="2"/>
+        </div>
     </div>
 </template>
 
 <style lang="sass" src="bui-weex/src/css/buiweex.scss"></style>
 <style>
-    .slider {
+    .g-flex-row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .g-flex-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .g-flayer {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .g-flex-center {
+        flex: 1;
+        justify-content: center; /*针对子view 是行内元素才起作用*/
+        align-items: center; /*针对子view 是行内元素才起作用*/
+    }
+
+    .g-flex-full {
         flex: 1;
     }
+
+    .slider {  visibility:visible;}
 
     .slider-item {
         width: 750px;
         justify-content: center;
         align-items: center;
     }
+
+    .hidden{  visibility:hidden ;height: 1px;}
 </style>
 <script>
     import mixins from '../mixins'
@@ -39,10 +69,11 @@
         mixins: [mixins],
         data: function () {
             return {
+                rootClass: 'slide',
                 leftItem: {
                     icon: 'ion-chevron-left'
                 },
-                currentTab: 0,
+                currentTab: -1,
                 tabItems: [
                     {
                         title: "电影"
@@ -70,12 +101,34 @@
         },
         created() {
             this.log('home created done')
+            setTimeout(() => {
+                this.currentTab=0
+            }, 1000);
+        },
+
+        computed: {
+            classNameEmpty () {
+                return  this.currentTab==-1   ? ['slider'] :['hidden']
+            },
+            className0 () {
+                return  this.currentTab==0   ? ['slider'] :['hidden']
+            },
+            className1 () {
+                return  this.currentTab==1 ? ['slider'] :['hidden']
+            },
+            className2 () {
+                return  this.currentTab==2 ? ['slider'] :['hidden']
+            },
+            className3 () {
+                return  this.currentTab==3 ? ['slider'] :['hidden']
+            }
         },
         methods: {
             back() {
                 this.$pop();
             },
             onItemChange(index){
+                this.currentTab = index;
 
             },
             onSliderChange(e){

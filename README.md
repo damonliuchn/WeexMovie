@@ -20,14 +20,14 @@
 
 ## 一、build native
 - 每个vue文件都为生成一个独立的bundle
-- 入口是 index.vue
-即 index.vue --> mixins --> 加载router-native和vuex
+- 每个 page下的vue都是入口
+即 *.vue --> mixins --> 加载vue-router和vuex
 - 每个bundle都有自己独立的vuex环境，互不相通
 
 ## 二、build web
 - 所有的vue页面都会打包成一个bundle
 - 入口是entry-web.js
-即 entry-web.js --> router-web.js --> index.vue --> mixins --> 加载router-native(无效)和vuex
+即 index.html -> entry-web.js --> router-web.js --> index.vue --> mixins --> 加载router-native(无效)和vuex
 - 整个项目里页面间的vuex环境相通
 
 ## 三、工具记录
