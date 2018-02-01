@@ -2,7 +2,7 @@
     <div>
         <bui-header backgroundColor="#ff9100" title="面包影视">
             <div slot="right">
-                <bui-icon name="ion-ios-search-strong" color="#ffffff" @click="back2"></bui-icon>
+                <bui-icon name="ion-ios-search-strong" color="#ffffff" @click="search"></bui-icon>
             </div>
         </bui-header>
         <slider class="slider" @change="onSliderChange" :index="currentTab">
@@ -93,11 +93,8 @@
             'home': Home
         },
         methods: {
-            back2() {
-                this.modal.toast({
-                    message: 'This is a toast',
-                    duration: 0.3
-                })
+            search() {
+                this.router.push("/search")
             },
             onItemChange(index){
 

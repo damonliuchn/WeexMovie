@@ -59,6 +59,7 @@ function find(source, regExp, start, end) {
         return "";
     }
 }
+
 export function fetch(type) {
     return new Promise((resolve, reject) => {
         var host = "http://d.aaccy.com";
@@ -94,6 +95,65 @@ export function fetch(type) {
                                 var title = find(titleTmp, />[\s\S]*?</, 1, 1);
                                 var url = host + find(titleTmp, /href="[\s\S]*?"/, 6, 1);
                                 var zhuyan = find(element, /<p>[\s\S]*?<\/p>/, 3, 4)
+                                var img = "http:" + find(element, /data-original="[\s\S]*?"/, 15, 1)
+                                object.score = score;
+                                object.status = status;
+                                object.title = title;
+                                object.url = url;
+                                object.zhuyan = zhuyan;
+                                object.img = img;
+                                array.push(object);
+                            }
+                        );
+                        console.log('----------> response.status: ' + array.length)
+                        resolve(array)
+                    } catch (e) {
+                        reject(response)
+                    }
+                } else {
+                    reject(response)
+                }
+            },
+            () => {
+            }
+        )
+    })
+}
+
+export function search(keyWord) {
+    return new Promise((resolve, reject) => {
+        var host = "http://d.aaccy.com";
+        stream.fetch(
+            {
+                method: 'GET',
+                url: host + '/vod-search-pg-1-wd-'+encodeURIComponent(keyWord)+'.html',
+                type: 'html',
+                headers: {
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+                    //"Accept-Encoding":"gzip, deflate",
+                    "Accept-Language": "en-US,en;q=0.9,de;q=0.8,zh-CN;q=0.7,zh-TW;q=0.6,zh;q=0.5",
+                    "Cache-Control": "max-age=0",
+                    "Connection": "keep-alive",
+                    "Cookie": "Hm_lvt_2b18c505a9d15bd467f33b53d2edd9b9=1516955381; Hm_lpvt_2b18c505a9d15bd467f33b53d2edd9b9=1516955381",
+                    "Host": "d.aaccy.com",
+                    "Upgrade-Insecure-Requests": "1",
+                    "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+                }
+            },
+            (response) => {
+                //console.log('----------> response.status: ' + response.data)
+                if (response.status == 200) {
+                    try {
+                        var array = [];
+                        var tmp = find(response.data, /new_tab_img[\s\S]*?ul/, 0, 0)
+                        tmp.match(/<li>[\s\S]*?<\/li>/g).forEach(
+                            function (element) {
+                                var object = new Object()
+                                var score = find(element, /class="iRankNum"><em>[\s\S]*?</, 21, 1)       //<label class="iRankNum"><em>1</em></label>
+                                var status = find(element, /状态[\s\S]*?</, 3, 1)      //<p>状态：高清</p>
+                                var title = find(element, /title="[\s\S]*?"/, 7, 1);                   //title="  "
+                                var url = host + find(element, /href="[\s\S]*?"/, 6, 1);               //href="  '
+                                var zhuyan = ""
                                 var img = "http:" + find(element, /data-original="[\s\S]*?"/, 15, 1)
                                 object.score = score;
                                 object.status = status;

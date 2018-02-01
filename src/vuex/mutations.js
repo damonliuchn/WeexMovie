@@ -5,6 +5,10 @@ const mutationsFun = {
         var key = "type"+type
         state[key] = items
         console.log("ssssss1 total:" + key + "------")
+    },
+    [mutationsName.SET_SEARCH_RESULT](state, {keyWord, items}) {
+        state.searchResult = items
+        console.log("ssssss1 total:" + key + "------" + state.searchResult.length)
     }
 }
 export  default mutationsFun

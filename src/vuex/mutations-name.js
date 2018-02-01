@@ -1,1 +1,2 @@
 export const SET_LIST = 'SET_LIST'
+export const SET_SEARCH_RESULT= 'SET_SEARCH_RESULT'

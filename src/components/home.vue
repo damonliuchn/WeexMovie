@@ -103,7 +103,7 @@
             this.log('home created done')
             setTimeout(() => {
                 this.currentTab=0
-            }, 1000);
+            }, 500);
         },
 
         computed: {
