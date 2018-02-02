@@ -104,7 +104,6 @@
         },
         methods: {
             loadMoreStories() {
-                this.log("loadMoreStories")
                 this.myPage = this.myPage +1;
                 this.fetchList({type: this.videoType,page:this.myPage})
             },
