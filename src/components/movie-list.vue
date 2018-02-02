@@ -36,13 +36,14 @@
         },
         data(){
             return {
-                loading: 1
+                loading: 1,
+                myPage:1
             }
         },
         created () {
             let self = this
             //Vue.set(this.store.state.users, 'aaa', 'testing');
-            this.fetchList({type: this.videoType})
+            this.fetchList({type: this.videoType,page:this.myPage})
             //监听一个getter
 //            this.store.watch(
 //                function (state) {
@@ -60,7 +61,7 @@
         computed: {
             test () {
                 var key = "type" + this.videoType
-                if(this.store.state[key].length >0 ){
+                if(this.loading == 1 && this.store.state[key].length >0 ){
                     this.loading = 0;
                 }
                 return this.store.state[key]
@@ -103,7 +104,9 @@
         },
         methods: {
             loadMoreStories() {
-
+                this.log("loadMoreStories")
+                this.myPage = this.myPage +1;
+                this.fetchList({type: this.videoType,page:this.myPage})
             },
             ...mapActions([
                 'fetchList'

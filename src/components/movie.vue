@@ -72,7 +72,7 @@
                 default: false
             }
         }, created () {
-            this.log('movie created done')
+
         },
         methods: {
             test2() {

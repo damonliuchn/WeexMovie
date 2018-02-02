@@ -88,6 +88,7 @@ export default {
         },
         log(log){
             this.nativeAction('/provider/log?text=' + log)
+            console.log(log)
         },
         toast(text){
             this.modal.toast({

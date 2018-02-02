@@ -60,14 +60,14 @@ function find(source, regExp, start, end) {
     }
 }
 
-export function fetch(type) {
+export function fetch(type,page) {
     return new Promise((resolve, reject) => {
         var host = "http://d.aaccy.com";
         stream.fetch(
             {
                 timeout:30000,
                 method: 'GET',
-                url: host + '/vod-list-id-'+type+'-pg-1-order--by-hits-class-0-year-0-letter--area--lang-.html',
+                url: host + '/vod-list-id-'+type+'-pg-'+page+'-order--by-hits-class-0-year-0-letter--area--lang-.html',
                 type: 'html',
                 headers: {
                     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
@@ -121,14 +121,14 @@ export function fetch(type) {
     })
 }
 
-export function search(keyWord) {
+export function search(keyWord,page) {
     return new Promise((resolve, reject) => {
         var host = "http://d.aaccy.com";
         stream.fetch(
             {
                 timeout:30000,
                 method: 'GET',
-                url: host + '/vod-search-pg-1-wd-'+encodeURIComponent(keyWord)+'.html',
+                url: host + '/vod-search-pg-'+page+'-wd-'+encodeURIComponent(keyWord)+'.html',
                 type: 'html',
                 headers: {
                     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",

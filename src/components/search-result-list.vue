@@ -51,7 +51,7 @@
         watch: {
             "keyWord": {
                 handler(val,oldVal) {
-                    this.searchList({keyWord: this.keyWord})
+                    this.searchList({keyWord: this.keyWord,page:1})
                 },
                 // 深度观察
                 deep: true
