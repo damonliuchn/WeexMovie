@@ -65,6 +65,7 @@ export function fetch(type) {
         var host = "http://d.aaccy.com";
         stream.fetch(
             {
+                timeout:30000,
                 method: 'GET',
                 url: host + '/vod-list-id-'+type+'-pg-1-order--by-hits-class-0-year-0-letter--area--lang-.html',
                 type: 'html',
@@ -125,6 +126,7 @@ export function search(keyWord) {
         var host = "http://d.aaccy.com";
         stream.fetch(
             {
+                timeout:30000,
                 method: 'GET',
                 url: host + '/vod-search-pg-1-wd-'+encodeURIComponent(keyWord)+'.html',
                 type: 'html',

@@ -1,17 +1,16 @@
 <template>
     <!--<text class="button" @click="test2()"> 跳转至messages页面{{test}}dd</text>-->
     <!-- Flow  Float  Flayer  Flexbox  四种布局方式 -->
-    <div class="g-flex-column">
-        <div class="g-flex-full">
-            <!--<div class="g-flayer g-flex-center" v-if="loading">-->
-                <!--<text> loading ...</text>-->
-            <!--</div>-->
-            <list class="g-flex-full" @loadmore="loadMoreStories" loadmoreoffset="50">
-                <cell v-for="movie in test" :key="movie.url" append="tree">
-                    <movie :data="movie"></movie>
-                </cell>
-            </list>
+    <div class="g-flex-column g-flex-full">
+        <div :class="classNameEmpty">
+            <loadingaa/>
         </div>
+        <!--<loading :class="classNameEmpty"/>-->
+        <list :class="className0" @loadmore="loadMoreStories" loadmoreoffset="50">
+            <cell v-for="movie in test" :key="movie.url" append="tree">
+                <movie :data="movie"></movie>
+            </cell>
+        </list>
     </div>
 </template>
 
@@ -19,13 +18,14 @@
     import mixins from '../mixins'
     import {mapGetters, mapActions} from 'vuex'
     import Movie from './movie.vue'
-    import {buiImageSlider} from 'bui-weex';
+    import Loadingaa from './loading.vue'
+    //import {buiImageSlider} from 'bui-weex';
     //Vue.mixin(mixins)
-    //    var buiweex = require("bui-weex");
+    //var buiweex = require("bui-weex");
     export default  {
         mixins: [mixins],
         components: {
-            Movie, buiImageSlider,
+            Movie,Loadingaa
 //         "bui-tabbar": buiweex.buiTabbar
         },
         props: {
@@ -36,7 +36,7 @@
         },
         data(){
             return {
-                loading: true
+                loading: 1
             }
         },
         created () {
@@ -59,11 +59,17 @@
         },
         computed: {
             test () {
-                //return this.store.state.users[this.videoType]
                 var key = "type" + this.videoType
-//                console.log("334total:" + key + "------" + this.store.state.users.aaa)
-//                console.log("334total:" + key + "------" + this.store.state.users.type1.length)
+                if(this.store.state[key].length >0 ){
+                    this.loading = 0;
+                }
                 return this.store.state[key]
+            },
+            classNameEmpty () {
+                return  this.loading==1 ? ['visible'] :['hidden']
+            },
+            className0 () {
+                return  this.loading==0 ? ['visible'] :['hidden']
             },
 //            ...mapGetters(
 //                [
@@ -134,6 +140,10 @@
     .g-flex-full {
         flex: 1;
     }
+
+    .hidden{  visibility:hidden ;height: 1px;}
+
+    .visible {  visibility:visible;}
 
     .c-red {
         background-color: #FF66ff;

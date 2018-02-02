@@ -3,21 +3,25 @@
         <bui-tabbar selectedColor="#ff9100" borderBottomColor="#ff9100" :tabItems="tabItems" showSelectedLine=true
                     @change="onItemChange" v-model="currentTab"></bui-tabbar>
 
-        <div :class="classNameEmpty">
-            <bui-image src="/image/logo.png" width="244px" height="1px"></bui-image>
-        </div>
-        <div :class="className0">
-            <movie-list :videoType="1"/>
-        </div>
-        <div :class="className1">
-            <movie-list :videoType="1"/>
-        </div>
-        <div :class="className2">
-            <movie-list :videoType="2"/>
-        </div>
-        <div :class="className3">
-            <movie-list :videoType="2"/>
-        </div>
+            <div :class="classNameEmpty">
+                <loadingaa/>
+            </div>
+        <movie-list :class="className0" :videoType="1"/>
+        <movie-list :class="className1" :videoType="2"/>
+        <movie-list :class="className2" :videoType="3"/>
+        <movie-list :class="className3" :videoType="4"/>
+            <!--<div :class="className0">-->
+                <!--<movie-list :class="className0" :videoType="1"/>-->
+            <!--</div>-->
+            <!--<div :class="className1">-->
+                <!--<movie-list :class="className1" :videoType="2"/>-->
+            <!--</div>-->
+            <!--<div :class="className2">-->
+                <!--<movie-list :class="className2" :videoType="3"/>-->
+            <!--</div>-->
+            <!--<div :class="className3">-->
+                <!--<movie-list :class="className3" :videoType="4"/>-->
+            <!--</div>-->
     </div>
 </template>
 
@@ -64,6 +68,7 @@
 <script>
     import mixins from '../mixins'
     import MovieList from './movie-list.vue'
+    import Loadingaa from './loading.vue'
     //    var buiweex = require("bui-weex");
     module.exports = {
         mixins: [mixins],
@@ -97,7 +102,7 @@
 //            'bui-icon': buiweex.buiIcon,
 //            'bui-button': buiweex.buiButton,
 //            'bui-image': buiweex.buiImage,
-            'movie-list': MovieList
+            'movie-list': MovieList,Loadingaa
         },
         created() {
             this.log('home created done')
