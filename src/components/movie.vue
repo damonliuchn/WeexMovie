@@ -224,7 +224,7 @@
     .card-btn {
         background-color: #ff5d62;
         border-radius: 8px;
-        width: 100px;
+        width:200px;
         height: 48px;
         justify-content: center;
     }

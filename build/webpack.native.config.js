@@ -33,7 +33,12 @@ fs.readFile(srcPath + "/router-native.js", 'utf8', function (err,data) {
 //  从项目根目录 输出到 输出文件夹目录，文件拷贝插件,将图片和字体拷贝到dist目录
 var copyPlugin = new copy([
     {from: './node_modules/bui-weex/src/font', to:  "pages/font"},
-    {from: './assets/image', to: "pages/image"}
+    {from: './assets/image', to: "pages/image"},
+    {
+        from: './dist/pages',
+        to: "/Project/AS_MY/fo/app/src/main/assets/weex",
+        ignore: ['font/*','image/*','weex-ui-sample/**']
+    }
 ])
 
 //搜集入口文件

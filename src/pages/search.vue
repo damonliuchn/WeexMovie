@@ -38,7 +38,6 @@
             },
             onSearch(value){
                 this.keyWord = value
-                this.toast(this.keyWord)
             }
         }
     }

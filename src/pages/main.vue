@@ -1,6 +1,6 @@
 <template>
     <div>
-        <bui-header backgroundColor="#ff9100" title="面包影视">
+        <bui-header backgroundColor="#ff9100" title="地瓜影视">
             <div slot="right">
                 <bui-icon name="ion-ios-search-strong" color="#ffffff" @click="search"></bui-icon>
             </div>
