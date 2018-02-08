@@ -1,8 +1,9 @@
 <template>
     <div>
         <bui-header backgroundColor="#ff9100" title="地瓜影视">
-            <div slot="right">
+            <div slot="right" class="g-flex-row">
                 <bui-icon name="ion-ios-search-strong" color="#ffffff" @click="search"></bui-icon>
+                <bui-icon style="margin-left: 6px" name="ion-android-share-alt" color="#ffffff" @click="share"></bui-icon>
             </div>
         </bui-header>
         <slider class="slider" @change="onSliderChange" :index="currentTab">
@@ -30,6 +31,11 @@
         width: 750px;
         justify-content: center;
         align-items: center;
+    }
+
+    .g-flex-row {
+        display: flex;
+        flex-direction: row;
     }
 </style>
 <script>
@@ -82,6 +88,8 @@
                     this.router.back()
                 }
             });
+            //检测升级
+            this.nativeAction('/provider/upgrade')
         },
         components: {
 //            "bui-tabbar": buiweex.buiTabbar,
@@ -95,6 +103,9 @@
         methods: {
             search() {
                 this.router.push("/search")
+            },
+            share() {
+                this.nativeAction('/provider/share')
             },
             onItemChange(index){
 

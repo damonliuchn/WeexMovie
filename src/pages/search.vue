@@ -4,6 +4,9 @@
             <div slot="left">
                 <bui-icon name="ion-ios-arrow-back" color="#ffffff" @click="back"></bui-icon>
             </div>
+            <div slot="right">
+                <bui-icon name="ion-android-share-alt" color="#ffffff" @click="share"></bui-icon>
+            </div>
         </bui-header>
         <bui-searchbar-center  @search="onSearch"></bui-searchbar-center>
         <search-result-list :keyWord="keyWord"/>
@@ -33,6 +36,9 @@
             SearchResultList
         },
         methods: {
+            share() {
+                this.nativeAction('/provider/share')
+            },
             back(){
                 this.router.back()
             },
