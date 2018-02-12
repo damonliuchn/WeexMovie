@@ -8,8 +8,8 @@
             </div>
         <movie-list :class="className0" :videoType="1"/>
         <movie-list :class="className1" :videoType="2"/>
-        <movie-list :class="className2" :videoType="3"/>
-        <movie-list :class="className3" :videoType="4"/>
+        <movie-list :class="className2" :videoType="4"/>
+        <movie-list :class="className3" :videoType="7"/>
             <!--<div :class="className0">-->
                 <!--<movie-list :class="className0" :videoType="1"/>-->
             <!--</div>-->

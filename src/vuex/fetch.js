@@ -2,7 +2,7 @@ const stream = weex.requireModule('stream')
 
 const baseURL = 'https://gitee.com/masonliu/MockData/raw/master/MoviesExample.json'
 //const baseURL = 'https://www.baidu.com'
-export function fetch2() {
+export function fetch3() {
     return new Promise((resolve, reject) => {
         stream.fetch(
             {
@@ -168,6 +168,33 @@ export function search(keyWord,page) {
                         );
                         console.log('----------> response.status: ' + array.length)
                         resolve(array)
+                    } catch (e) {
+                        reject(response)
+                    }
+                } else {
+                    reject(response)
+                }
+            },
+            () => {
+            }
+        )
+    })
+}
+
+export function fetch2(type,page) {
+    return new Promise((resolve, reject) => {
+        var host = "http://172.20.12.26:8057/api/notToken";
+        stream.fetch(
+            {
+                timeout:30000,
+                method: 'GET',
+                url: host + '?type='+type+'&page='+page,
+                type: 'json'
+            },
+            (response) => {
+                if (response.status == 200) {
+                    try {
+                        resolve( response.data.data)
                     } catch (e) {
                         reject(response)
                     }

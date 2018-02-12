@@ -10,26 +10,25 @@
     <div class="root" @click="test2()">
         <div class="row card">
             <div class="card-side">
-                <image class="card-poster" v-bind:src="data.img"
+                <image class="card-poster" v-bind:src="data.one.img"
                        placeholder="http://resizing.flixster.com/Q8IBqX3b-nhEAEYokJ_aH6jO6lE=/54x78/dkpu1ddg7pbsk.cloudfront.net/movie/10/94/13/10941373_ori.jpg"></image>
-
             </div>
-            <div class="card-message">
-                <text class="card-subtitle">{{data.title}}</text>
+            <!--<div class="card-message">-->
+                <!--<text class="card-subtitle">{{data.title}}</text>-->
 
-                <div class="card-line row">
-                    <image class="card-icon" src="//ossgw.alicdn.com/img/upload/0a4946e164acd1f81e97ddbc048afcc5/Group13-69-69.png@22w_22h_80Q.png"></image>
-                    <text class="card-title">{{data.zhuyan}}</text>
-                </div>
+                <!--<div class="card-line row">-->
+                    <!--<image class="card-icon" src="//ossgw.alicdn.com/img/upload/0a4946e164acd1f81e97ddbc048afcc5/Group13-69-69.png@22w_22h_80Q.png"></image>-->
+                    <!--<text class="card-title">{{data.zhuyan}}</text>-->
+                <!--</div>-->
 
-                <div class="card-progress row">
-                    <!--<div class="card-progress-inner" style="{ width: 200px }"></div>-->
-                    <text class="card-got">{{data.score}}</text>
-                </div>
-                <div class="card-btn">
-                    <text class="card-btn-text">{{data.status}}</text>
-                </div>
-            </div>
+                <!--<div class="card-progress row">-->
+                    <!--&lt;!&ndash;<div class="card-progress-inner" style="{ width: 200px }"></div>&ndash;&gt;-->
+                    <!--<text class="card-got">{{data.score}}</text>-->
+                <!--</div>-->
+                <!--<div class="card-btn">-->
+                    <!--<text class="card-btn-text">{{data.status}}</text>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
 </template>
