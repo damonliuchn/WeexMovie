@@ -1,34 +1,34 @@
 <template>
-    <!--<div class="g-flex-row padding" @click="test2()">-->
-        <!--<div class="g-flex-column g-flex-full" style="padding-right:10px;">-->
-            <!--<text class="title">{{data.title}}</text>-->
-            <!--<text class="title">{{data.zhuyan}}</text>-->
-        <!--</div>-->
-        <!--<image style="width:159px; height:231px;" v-bind:src="data.img"-->
-               <!--placeholder="http://resizing.flixster.com/Q8IBqX3b-nhEAEYokJ_aH6jO6lE=/54x78/dkpu1ddg7pbsk.cloudfront.net/movie/10/94/13/10941373_ori.jpg"></image>-->
-    <!--</div>-->
-    <div class="root" @click="test2()">
-        <div class="row card">
-            <div class="card-side">
-                <image class="card-poster" v-bind:src="data.one.img"
-                       placeholder="http://resizing.flixster.com/Q8IBqX3b-nhEAEYokJ_aH6jO6lE=/54x78/dkpu1ddg7pbsk.cloudfront.net/movie/10/94/13/10941373_ori.jpg"></image>
+    <div class="g-flex-row">
+        <div class="g-flex-center" @click="test2(data.one.url)">
+            <image class="card-poster" v-bind:src="data.one.img"
+                   v-bind:placeholder="data.one.placeholder"></image>
+            <div class="card-btn g-flayer">
+                <text class="card-btn-text">{{data.one.status}}</text>
             </div>
-            <!--<div class="card-message">-->
-                <!--<text class="card-subtitle">{{data.title}}</text>-->
-
-                <!--<div class="card-line row">-->
-                    <!--<image class="card-icon" src="//ossgw.alicdn.com/img/upload/0a4946e164acd1f81e97ddbc048afcc5/Group13-69-69.png@22w_22h_80Q.png"></image>-->
-                    <!--<text class="card-title">{{data.zhuyan}}</text>-->
-                <!--</div>-->
-
-                <!--<div class="card-progress row">-->
-                    <!--&lt;!&ndash;<div class="card-progress-inner" style="{ width: 200px }"></div>&ndash;&gt;-->
-                    <!--<text class="card-got">{{data.score}}</text>-->
-                <!--</div>-->
-                <!--<div class="card-btn">-->
-                    <!--<text class="card-btn-text">{{data.status}}</text>-->
-                <!--</div>-->
-            <!--</div>-->
+            <div class="card-btn-bottom">
+                <text class="card-btn-text">{{data.one.title}}</text>
+            </div>
+        </div>
+        <div class="g-flex-center" @click="test2(data.two.url)">
+            <image class="card-poster" v-bind:src="data.two.img"
+                   v-bind:placeholder="data.one.placeholder"></image>
+            <div class="card-btn g-flayer">
+                <text class="card-btn-text">{{data.two.status}}</text>
+            </div>
+            <div class="card-btn-bottom">
+                <text class="card-btn-text">{{data.two.title}}</text>
+            </div>
+        </div>
+        <div class="g-flex-center" @click="test2(data.three.url)">
+            <image class="card-poster" v-bind:src="data.three.img"
+                   v-bind:placeholder="data.one.placeholder"></image>
+            <div class="card-btn g-flayer">
+                <text class="card-btn-text">{{data.three.status}}</text>
+            </div>
+            <div class="card-btn-bottom">
+                <text class="card-btn-text">{{data.three.title}}</text>
+            </div>
         </div>
     </div>
 </template>
@@ -63,6 +63,7 @@
         flex: 1;
         justify-content: center; /*针对子view 是行内元素才起作用*/
         align-items: center; /*针对子view 是行内元素才起作用*/
+        margin-bottom: 15px;
     }
 
     .padding {
@@ -148,8 +149,14 @@
     }
     .card-poster {
         width: 230px;
-        height: 230px;
-        margin-right: 20px;
+        height: 300px;
+    }
+    .card-btn-bottom {
+        background-color: #3c3f41;
+        width:230px;
+        height: 40px;
+        margin-top: -40px;
+        justify-content: center;
     }
     .card-title {
         font-size: 26px;
@@ -224,13 +231,16 @@
         background-color: #ff5d62;
         border-radius: 8px;
         width:200px;
-        height: 48px;
+        height: 40px;
+        margin-top: 5px;
+        margin-left: 20px;
         justify-content: center;
     }
     .card-btn-text {
         color: #FFFFFF;
         font-size: 26px;
         text-align: center;
+        lines :1;
     }
 
     .floor {
@@ -287,8 +297,8 @@
 
         },
         methods: {
-            test2() {
-                this.nativeAction('/activity/movieDetail?url=' + this.data.url)
+            test2(url) {
+                this.nativeAction('/activity/movieDetail?url=' + url)
             }
         }
     }

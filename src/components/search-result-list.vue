@@ -32,7 +32,8 @@
         },
         data(){
             return {
-                loading: true
+                loading: true,
+                myPage:1
             }
         },
         created () {
@@ -44,6 +45,10 @@
             },
         },
         methods: {
+            loadMoreStories() {
+                this.myPage = this.myPage +1;
+                this.searchList({keyWord: this.keyWord,page:this.myPage})
+            },
             ...mapActions([
                 'searchList'
             ])

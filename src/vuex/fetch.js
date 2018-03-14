@@ -1,7 +1,7 @@
 const stream = weex.requireModule('stream')
 
-const baseURL = 'https://gitee.com/masonliu/MockData/raw/master/MoviesExample.json'
-//const baseURL = 'https://www.baidu.com'
+//const baseURL = 'https://gitee.com/masonliu/MockData/raw/master/MoviesExample.json'
+const baseURL = 'https://www.baidu.com'
 export function fetch3() {
     return new Promise((resolve, reject) => {
         stream.fetch(
@@ -123,51 +123,18 @@ export function fetch(type,page) {
 
 export function search(keyWord,page) {
     return new Promise((resolve, reject) => {
-        var host = "http://d.aaccy.com";
+        var host = "http://digua.masonliu.com/api/notToken";
         stream.fetch(
             {
                 timeout:30000,
                 method: 'GET',
-                url: host + '/vod-search-pg-'+page+'-wd-'+encodeURIComponent(keyWord)+'.html',
-                type: 'html',
-                headers: {
-                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    //"Accept-Encoding":"gzip, deflate",
-                    "Accept-Language": "en-US,en;q=0.9,de;q=0.8,zh-CN;q=0.7,zh-TW;q=0.6,zh;q=0.5",
-                    "Cache-Control": "max-age=0",
-                    "Connection": "keep-alive",
-                    "Cookie": "Hm_lvt_2b18c505a9d15bd467f33b53d2edd9b9=1516955381; Hm_lpvt_2b18c505a9d15bd467f33b53d2edd9b9=1516955381",
-                    "Host": "d.aaccy.com",
-                    "Upgrade-Insecure-Requests": "1",
-                    "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
-                }
+                url: host + '?type=-1&keyWord='+encodeURIComponent(keyWord)+'&page='+page,
+                type: 'json'
             },
             (response) => {
-                //console.log('----------> response.status: ' + response.data)
                 if (response.status == 200) {
                     try {
-                        var array = [];
-                        var tmp = find(response.data, /new_tab_img[\s\S]*?ul/, 0, 0)
-                        tmp.match(/<li>[\s\S]*?<\/li>/g).forEach(
-                            function (element) {
-                                var object = new Object()
-                                var score = find(element, /class="iRankNum"><em>[\s\S]*?</, 21, 1)       //<label class="iRankNum"><em>1</em></label>
-                                var status = find(element, /状态[\s\S]*?</, 3, 1)      //<p>状态：高清</p>
-                                var title = find(element, /title="[\s\S]*?"/, 7, 1);                   //title="  "
-                                var url = host + find(element, /href="[\s\S]*?"/, 6, 1);               //href="  '
-                                var zhuyan = ""
-                                var img = "http:" + find(element, /data-original="[\s\S]*?"/, 15, 1)
-                                object.score = score;
-                                object.status = status;
-                                object.title = title;
-                                object.url = url;
-                                object.zhuyan = zhuyan;
-                                object.img = img;
-                                array.push(object);
-                            }
-                        );
-                        console.log('----------> response.status: ' + array.length)
-                        resolve(array)
+                        resolve( response.data.data)
                     } catch (e) {
                         reject(response)
                     }
@@ -183,7 +150,7 @@ export function search(keyWord,page) {
 
 export function fetch2(type,page) {
     return new Promise((resolve, reject) => {
-        var host = "http://172.20.12.26:8057/api/notToken";
+        var host = "http://digua.masonliu.com/api/notToken";
         stream.fetch(
             {
                 timeout:30000,
