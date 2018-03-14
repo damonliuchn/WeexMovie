@@ -2,6 +2,10 @@
 1. Web端做SPA，Native端做多页应用
 2. 使用Vuex
 
+# 演示Demo
+- http://www.masonliu.com/app/mianbao/download
+![](https://raw.githubusercontent.com/MasonLiuChn/WeexExplorer/develop/tool/doc/1.jpg)
+![](https://raw.githubusercontent.com/MasonLiuChn/WeexExplorer/develop/tool/doc/2.jpg)
 # 启动
 1. npm install
 2. npm run serve
