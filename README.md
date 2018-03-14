@@ -4,8 +4,9 @@
 
 # 演示Demo
 - http://www.masonliu.com/app/mianbao/download
-![](https://raw.githubusercontent.com/MasonLiuChn/WeexExplorer/develop/tool/doc/1.jpg)
-![](https://raw.githubusercontent.com/MasonLiuChn/WeexExplorer/develop/tool/doc/2.jpg)
+<img src="https://raw.githubusercontent.com/MasonLiuChn/WeexExplorer/develop/tool/doc/1.jpg" width="40%" height="40%" />
+<img src="https://raw.githubusercontent.com/MasonLiuChn/WeexExplorer/develop/tool/doc/2.jpg" width="40%" height="40%" />
+
 # 启动
 1. npm install
 2. npm run serve
