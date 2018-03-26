@@ -83,11 +83,11 @@ export default {
                 })
             })
         },
-        nativeAction(pathQuery){
-            this.router.push('/native/' + encodeURIComponent(pathQuery))
+        handle(pathQuery){
+            weex.requireModule("CommonModule").handle(pathQuery)
         },
         log(log){
-            this.nativeAction('/provider/log?text=' + log)
+            this.handle('/provider/log?text=' + log)
             console.log(log)
         },
         toast(text){

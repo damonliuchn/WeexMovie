@@ -37,7 +37,7 @@
         },
         methods: {
             share() {
-                this.nativeAction('/provider/share')
+                this.handle('/provider/share')
             },
             back(){
                 this.router.back()

@@ -89,7 +89,7 @@
                 }
             });
             //检测升级
-            this.nativeAction('/provider/upgrade')
+            this.handle('/provider/upgrade')
         },
         components: {
 //            "bui-tabbar": buiweex.buiTabbar,
@@ -105,7 +105,7 @@
                 this.router.push("/search")
             },
             share() {
-                this.nativeAction('/provider/share')
+                this.handle('/provider/share')
             },
             onItemChange(index){
 

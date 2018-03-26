@@ -298,7 +298,7 @@
         },
         methods: {
             test2(url) {
-                this.nativeAction('/activity/movieDetail?url=' + url)
+                this.handle('/activity/movieDetail?url=' + url)
             }
         }
     }
