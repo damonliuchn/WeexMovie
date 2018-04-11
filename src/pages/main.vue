@@ -1,11 +1,14 @@
 <template>
     <div>
-        <bui-header backgroundColor="#ff9100" title="地瓜影视">
-            <div slot="right" class="g-flex-row">
-                <bui-icon name="ion-ios-search-strong" color="#ffffff" @click="search"></bui-icon>
-                <bui-icon style="margin-left: 6px" name="ion-android-share-alt" color="#ffffff" @click="share"></bui-icon>
+        <div class="header">
+            <text class="header-title">地瓜影视</text>
+            <div class="header-search-box" @click="search">
+                <bui-icon @click="search" name="ion-ios-search-strong" color="#ffffff" ></bui-icon>
             </div>
-        </bui-header>
+            <div class="header-box" @click="share">
+                <text class="header-subtitle">分享</text>
+            </div>
+        </div>
         <slider class="slider" @change="onSliderChange" :index="currentTab">
             <div>
                 <home/>
@@ -37,10 +40,49 @@
         display: flex;
         flex-direction: row;
     }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content:space-between;
+        height: 100px;
+        background-color: #ff9100;
+    }
+
+    .header-title {
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 38px;
+        color: #FFFFFF;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .header-subtitle {
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 32px;
+        color: #FFFFFF;
+    }
+
+    .header-box {
+        justify-content: center;
+        align-items: center;
+        width: 140px;
+        height: 100px;
+    }
+
+    .header-search-box {
+        width: 400px;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        background-color: #c66200;
+        border-radius: 15px;
+    }
 </style>
 <script>
     import Home from '../components/home.vue'
-    //    import buiweex from "bui-weex";
+    // import buiweex from "bui-weex";
     import mixins from '../mixins'
     import pageMixins from '../mixins/page-mixins'
     export default {
@@ -92,12 +134,12 @@
             this.handle('/provider/upgrade')
         },
         components: {
-//            "bui-tabbar": buiweex.buiTabbar,
-//            "bui-tabbar-item": buiweex.buiTabbarItem,
-//            'bui-header': buiweex.buiHeader,
-//            'bui-icon': buiweex.buiIcon,
-//            'bui-button': buiweex.buiButton,
-//            'bui-image': buiweex.buiImage,
+// "bui-tabbar": buiweex.buiTabbar,
+// "bui-tabbar-item": buiweex.buiTabbarItem,
+// 'bui-header': buiweex.buiHeader,
+// 'bui-icon': buiweex.buiIcon,
+// 'bui-button': buiweex.buiButton,
+// 'bui-image': buiweex.buiImage,
             'home': Home
         },
         methods: {

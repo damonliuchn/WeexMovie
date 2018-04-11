@@ -60,95 +60,221 @@ function find(source, regExp, start, end) {
     }
 }
 
-export function fetch(type,page) {
+function handle(pathQuery){
+    weex.requireModule("CommonModule").handle(pathQuery)
+}
+function log(log){
+    handle('/provider/log?text=' + log)
+    console.log(log)
+}
+function logObject(obj){
+    var str = JSON.stringify(obj, null, 4);
+    log(str)
+}
+
+export function fetch222(type,page) {
     return new Promise((resolve, reject) => {
-        var host = "http://d.aaccy.com";
+        var host = "http://www.15yc.com";
         stream.fetch(
             {
                 timeout:30000,
                 method: 'GET',
-                url: host + '/vod-list-id-'+type+'-pg-'+page+'-order--by-hits-class-0-year-0-letter--area--lang-.html',
-                type: 'html',
+                //url: host + '/type/'+type+'/'+page+'.html',
+                url: 'http://www.15yc.com',
+                //url: 'http://httpbin.org/get',
+                //type: 'text',
                 headers: {
-                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    //"Accept-Encoding":"gzip, deflate",
-                    "Accept-Language": "en-US,en;q=0.9,de;q=0.8,zh-CN;q=0.7,zh-TW;q=0.6,zh;q=0.5",
-                    "Cache-Control": "max-age=0",
-                    "Connection": "keep-alive",
-                    "Cookie": "Hm_lvt_2b18c505a9d15bd467f33b53d2edd9b9=1516955381; Hm_lpvt_2b18c505a9d15bd467f33b53d2edd9b9=1516955381",
-                    "Host": "d.aaccy.com",
+                    "Host": "www.15yc.com",
                     "Upgrade-Insecure-Requests": "1",
-                    "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+                    "User-Agent": "Mozilla/5.0 (Linux; U; Android 7.1.2; zh-cn; MI 5X Build/N2G47H) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.128 Mobile Safari/537.36 XiaoMi/MiuiBrowser/9.5.9",
+                    "x-miorigin": "on",
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+                    "Accept-Encoding": "gzip, deflate",
+                    "Accept-Language": "zh-CN,en-US;q=0.8"
                 }
             },
             (response) => {
+                log('----------> response: ')
+                logObject(response)
+                if(!response.ok){
+                    log('----------> !response.ok')
+                }else{
+                    log('----------> response.data: ' + response.data)
+                }
                 //console.log('----------> response.status: ' + response.data)
                 if (response.status == 200) {
                     try {
                         var array = [];
-                        var tmp = find(response.data, /vod_list[\s\S]*?ul/, 0, 0)
-                        tmp.match(/<li>[\s\S]*?<\/li>/g).forEach(
+                        var tmp = find(response.data, /col-md-1-5 col-sm-4 col-xs-6[\s\S]*?background:#FFF/, 0, 0)
+                        tmp.match(/"movie-item"[\s\S]*?otherinfo/g).forEach(
                             function (element) {
                                 var object = new Object()
-                                var score = find(element, /class="score">[\s\S]*?</, 14, 1)
-                                var status = find(element, /class="title">[\s\S]*?</, 14, 1)
-                                var titleTmp = find(element, /<h2>[\s\S]*?<\/h2>/, 4, 5);
-                                var title = find(titleTmp, />[\s\S]*?</, 1, 1);
-                                var url = host + find(titleTmp, /href="[\s\S]*?"/, 6, 1);
-                                var zhuyan = find(element, /<p>[\s\S]*?<\/p>/, 3, 4)
-                                var img = "http:" + find(element, /data-original="[\s\S]*?"/, 15, 1)
-                                object.score = score;
+                                var status = find(element, /hdtag">[\s\S]*?</, 7, 1)
+                                var title = find(element, /title="[\s\S]*?"/, 7, 1);
+                                var url = host + find(element, /href="[\s\S]*?"/, 6, 1);
+                                var img = find(element, /src="[\s\S]*?"/, 5, 1)
                                 object.status = status;
                                 object.title = title;
                                 object.url = url;
-                                object.zhuyan = zhuyan;
                                 object.img = img;
                                 array.push(object);
                             }
                         );
                         console.log('----------> response.status: ' + array.length)
-                        resolve(array)
+                        var array2 = [];
+                        for (var i = 0; i < array.length; i++) {
+                            if (i % 3 == 0) {
+                                var object = new Object()
+                                object.one = array[i];
+                                if (i + 1 < array.length) {
+                                    object.two(array[i+1]);
+                                } else {
+                                    object.two = new Object()
+                                }
+                                if (i + 2 < array.length) {
+                                    object.three = array[i+2];
+                                } else {
+                                    object.three = new Object()
+                                }
+                                array2.push(object)
+                            }
+                        }
+                        resolve(array2)
                     } catch (e) {
                         reject(response)
                     }
                 } else {
+                    log('----------> response.status2: '+response.status)
                     reject(response)
                 }
             },
-            () => {
+            (responseInfo) => {
+                log('----------> responseInfo.status: ' + responseInfo.status)
+                //logObject(responseInfo)
             }
         )
+    })
+}
+
+
+
+export function fetch2(type,page) {
+    return new Promise((resolve, reject) => {
+        var host = "http://www.15yc.com";
+        var url = host + '/type/'+type+'/'+page+'.html';
+        var commonModule=weex.requireModule("CommonModule");
+        commonModule.nativeHttpGet(url,(response)=>{
+            if(!response.ok){
+                log('----------> response.data: ' + response.ok)
+                reject(response)
+            }else{
+                try {
+                    log('----------> response.status111: ')
+                    var array = [];
+                    var tmp = find(response.data, /col-md-1-5 col-sm-4 col-xs-6[\s\S]*?background:#FFF/, 0, 0)
+                    tmp.match(/"movie-item"[\s\S]*?otherinfo/g).forEach(
+                        function (element) {
+                            var object = new Object()
+                            var status = find(element, /hdtag">[\s\S]*?</, 7, 1)
+                            var title = find(element, /title="[\s\S]*?"/, 7, 1);
+                            var url = host + find(element, /href="[\s\S]*?"/, 6, 1);
+                            var img = find(element, /src="[\s\S]*?"/, 5, 1)
+                            object.status = status;
+                            object.title = title;
+                            object.url = url;
+                            object.img = img;
+                            array.push(object);
+                        }
+                    );
+                    log('----------> response.status: ' + array.length)
+                    var array2 = [];
+                    for (var i = 0; i < array.length; i++) {
+                        if (i % 3 == 0) {
+                            var object = new Object()
+                            object.one = array[i];
+                            if (i + 1 < array.length) {
+                                object.two = array[i+1];
+                            } else {
+                                object.two = new Object()
+                            }
+                            if (i + 2 < array.length) {
+                                object.three = array[i+2];
+                            } else {
+                                object.three = new Object()
+                            }
+                            array2.push(object)
+                        }
+                    }
+                    log('----------> response.status3333: ' + array2.length)
+                    resolve(array2)
+                }
+                catch (e) {
+                    reject(response)
+                }
+            }
+        })
     })
 }
 
 export function search(keyWord,page) {
     return new Promise((resolve, reject) => {
-        var host = "http://digua.masonliu.com/api/notToken";
-        stream.fetch(
-            {
-                timeout:30000,
-                method: 'GET',
-                url: host + '?type=-1&keyWord='+encodeURIComponent(keyWord)+'&page='+page,
-                type: 'json'
-            },
-            (response) => {
-                if (response.status == 200) {
-                    try {
-                        resolve( response.data.data)
-                    } catch (e) {
-                        reject(response)
+        var host = "http://www.15yc.com";
+        var url =	host + '/s/'+encodeURIComponent(keyWord)+'/'+page+'.html';
+        var commonModule=weex.requireModule("CommonModule");
+        commonModule.nativeHttpGet(url,(response)=>{
+            if(!response.ok){
+                log('----------> response.data: ' + response.ok)
+                reject(response)
+            }else{
+                try {
+                    log('----------> response.status111: ')
+                    var array = [];
+                    var tmp = find(response.data, /col-md-1-5 col-sm-4 col-xs-6[\s\S]*?background:#FFF/, 0, 0)
+                    tmp.match(/"movie-item"[\s\S]*?otherinfo/g).forEach(
+                        function (element) {
+                            var object = new Object()
+                            var status = find(element, /hdtag">[\s\S]*?</, 7, 1)
+                            var title = find(element, /title="[\s\S]*?"/, 7, 1);
+                            var url = host + find(element, /href="[\s\S]*?"/, 6, 1);
+                            var img = find(element, /src="[\s\S]*?"/, 5, 1)
+                            object.status = status;
+                            object.title = title;
+                            object.url = url;
+                            object.img = img;
+                            array.push(object);
+                        }
+                    );
+                    log('----------> response.status: ' + array.length)
+                    var array2 = [];
+                    for (var i = 0; i < array.length; i++) {
+                        if (i % 3 == 0) {
+                            var object = new Object()
+                            object.one = array[i];
+                            if (i + 1 < array.length) {
+                                object.two = array[i+1];
+                            } else {
+                                object.two = new Object()
+                            }
+                            if (i + 2 < array.length) {
+                                object.three = array[i+2];
+                            } else {
+                                object.three = new Object()
+                            }
+                            array2.push(object)
+                        }
                     }
-                } else {
+                    log('----------> response.status3333: ' + array2.length)
+                    resolve(array2)
+                }
+                catch (e) {
                     reject(response)
                 }
-            },
-            () => {
             }
-        )
+        })
     })
 }
 
-export function fetch2(type,page) {
+export function fetch22(type,page) {
     return new Promise((resolve, reject) => {
         var host = "http://digua.masonliu.com/api/notToken";
         stream.fetch(

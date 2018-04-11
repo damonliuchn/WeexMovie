@@ -1,14 +1,19 @@
 <template>
     <div>
-        <bui-header backgroundColor="#ff9100" title="搜索">
-            <div slot="left">
-                <bui-icon name="ion-ios-arrow-back" color="#ffffff" @click="back"></bui-icon>
+        <div class="header">
+            <div class="g-flex-row g-flex-center">
+                <div class="header-box" @click="back">
+                    <bui-icon name="ion-android-arrow-back" color="#ffffff" @click="back"></bui-icon>
+                </div>
+                <text class="header-title">搜索</text>
             </div>
-            <div slot="right">
-                <bui-icon name="ion-android-share-alt" color="#ffffff" @click="share"></bui-icon>
+            <div style="width=1px">
             </div>
-        </bui-header>
-        <bui-searchbar-center  @search="onSearch"></bui-searchbar-center>
+            <div class="header-box" @click="share">
+                <text class="header-subtitle">分享</text>
+            </div>
+        </div>
+        <bui-searchbar-center @search="onSearch"></bui-searchbar-center>
         <search-result-list :keyWord="keyWord"/>
     </div>
 </template>
@@ -17,6 +22,43 @@
 <style>
     .slider {
         flex: 1;
+    }
+    .g-flex-center {
+        justify-content: center;
+        align-items: center;
+    }
+    .g-flex-row {
+        display: flex;
+        flex-direction: row;
+    }
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content:space-between;
+        height: 100px;
+        background-color: #ff9100;
+    }
+
+    .header-title {
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 38px;
+        color: #FFFFFF;
+        margin-left: 0px;
+        margin-right: 30px;
+    }
+
+    .header-subtitle {
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 32px;
+        color: #FFFFFF;
+    }
+
+    .header-box {
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
     }
 </style>
 <script>
