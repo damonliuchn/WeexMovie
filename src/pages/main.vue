@@ -10,17 +10,18 @@
             </div>
         </div>
         <slider class="slider" @change="onSliderChange" :index="currentTab">
-            <div>
+            <div :class="className0">
                 <home/>
             </div>
-            <!--<div class="slider-item">-->
-            <!--<text class="h1">tab1</text>-->
-            <!--</div>-->
-            <!--<div class="slider-item">-->
-            <!--<text class="h1">tab2</text>-->
-            <!--</div>-->
+            <div :class="className1">
+                <!--<movie-list  :videoType="1"/>-->
+                <home/>
+            </div>
+            <div class="slider-item">
+                <text class="h1">功能开发中，敬请期待</text>
+            </div>
         </slider>
-        <!--<bui-tabbar :tabItems="tabItems" selectedBackground="#F77845" selectedColor="#ffffff" @change="onItemChange" v-model="currentTab"></bui-tabbar>-->
+        <bui-tabbar :tabItems="tabItems" selectedBackground="#F77845" selectedColor="#ffffff" @change="onItemChange" v-model="currentTab"></bui-tabbar>
     </div>
 </template>
 
@@ -79,10 +80,14 @@
         background-color: #c66200;
         border-radius: 15px;
     }
+
+    .visible {  visibility:visible;}
+
+    .hidden{  visibility:hidden ;height: 1px;}
 </style>
 <script>
     import Home from '../components/home.vue'
-    // import buiweex from "bui-weex";
+    import MovieList from '../components/movie-list.vue'
     import mixins from '../mixins'
     import pageMixins from '../mixins/page-mixins'
     export default {
@@ -98,18 +103,26 @@
                 currentTab: 0,
                 tabItems: [
                     {
-                        title: "首页",
-                        icon: "ion-home"
+                        title: "最热",
+                        icon: "ion-flame"
                     },
                     {
-                        icon: "ion-planet",
-                        title: "专题"
+                        icon: "ion-ios-timer",
+                        title: "最新"
                     },
                     {
-                        icon: "ion-ios-cart",
+                        icon: "ion-ios-contact",
                         title: "我的"
                     }
                 ]
+            }
+        },
+        computed: {
+            className0 () {
+                return  this.currentTab==0   ? ['visible'] :['hidden']
+            },
+            className1 () {
+                return  this.currentTab==1 ? ['visible'] :['hidden']
             }
         },
         created() {
@@ -140,6 +153,7 @@
 // 'bui-icon': buiweex.buiIcon,
 // 'bui-button': buiweex.buiButton,
 // 'bui-image': buiweex.buiImage,
+            'movie-list': MovieList,
             'home': Home
         },
         methods: {
