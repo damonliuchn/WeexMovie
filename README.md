@@ -4,9 +4,8 @@
 
 # 一、演示Demo
 http://www.masonliu.com/app/digua/download
-| 1 | 2 | 
-| - | - |
-|<img src="https://raw.githubusercontent.com/MasonLiuChn/WeexExplorer/develop/tool/doc/1.jpg" width="40%" height="40%" />|<img src="https://raw.githubusercontent.com/MasonLiuChn/WeexExplorer/develop/tool/doc/2.jpg" width="40%" height="40%" />|
+
+<img src="https://raw.githubusercontent.com/MasonLiuChn/WeexExplorer/develop/tool/doc/1.jpg" width="40%" height="40%" />
 
 # 二、启动
 1. npm install
