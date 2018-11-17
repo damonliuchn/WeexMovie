@@ -1,3 +1,6 @@
+# [Deprecated] 本工程不再维护，并转移到更简洁强大的WeexTemplate https://github.com/MasonLiuChn/WeexTemplate
+
+
 # 本工程尝试实现
 1. Web端做SPA，Native端做多页应用
 2. 使用Vuex
